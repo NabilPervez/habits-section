@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Day Division Choice - Habitrack</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#544600",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#e9c400",
+                        "primary-container": "#1db954",
+                        "outline-variant": "#bccbb9",
+                        "surface-variant": "#e1e3e4",
+                        "on-surface-variant": "#3d4a3d",
+                        "on-error-container": "#93000a",
+                        "outline": "#6d7b6c",
+                        "inverse-on-surface": "#f0f1f2",
+                        "secondary": "#705d00",
+                        "surface-container": "#edeeef",
+                        "on-tertiary-container": "#383838",
+                        "inverse-primary": "#53e076",
+                        "surface-dim": "#d9dadb",
+                        "secondary-container": "#fcd400",
+                        "on-tertiary-fixed": "#1c1b1b",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#72fe8f",
+                        "surface-container-highest": "#e1e3e4",
+                        "secondary-fixed": "#ffe16d",
+                        "on-secondary": "#ffffff",
+                        "surface": "#f8f9fa",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#6e5c00",
+                        "primary": "#006e2d",
+                        "tertiary-fixed": "#e5e2e1",
+                        "tertiary-container": "#a3a1a1",
+                        "surface-tint": "#006e2d",
+                        "inverse-surface": "#2e3132",
+                        "background": "#f8f9fa",
+                        "on-surface": "#191c1d",
+                        "surface-container-high": "#e7e8e9",
+                        "on-tertiary-fixed-variant": "#474646",
+                        "surface-container-low": "#f3f4f5",
+                        "surface-bright": "#f8f9fa",
+                        "on-primary-fixed-variant": "#005320",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#221b00",
+                        "tertiary": "#5f5e5e",
+                        "primary-fixed-dim": "#53e076",
+                        "on-primary-fixed": "#002108",
+                        "on-primary-container": "#004118",
+                        "on-background": "#191c1d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "64px",
+                        "margin": "20px",
+                        "lg": "40px",
+                        "gutter": "16px",
+                        "base": "8px",
+                        "xs": "4px",
+                        "md": "24px",
+                        "sm": "12px"
+                    },
+                    "fontFamily": {
+                        "display": ["Lexend"],
+                        "body-md": ["Lexend"],
+                        "label-bold": ["Lexend"],
+                        "headline-md": ["Lexend"],
+                        "label-sm": ["Lexend"],
+                        "body-lg": ["Lexend"],
+                        "headline-lg": ["Lexend"]
+                    },
+                    "fontSize": {
+                        "display": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-bold": ["14px", { "lineHeight": "1.0", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "1.0", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Tactical animations */
+        .btn-squish:active {
+            transform: scale(0.95);
+            transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-squish:active {
+            transform: scale(0.98);
+            transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background min-h-screen flex flex-col font-body-md text-on-background selection:bg-primary-container selection:text-on-primary-container antialiased">
+<!-- TopAppBar Shell (Rendered directly from JSON styles) -->
+<header class="bg-white dark:bg-zinc-950 flex justify-between items-center w-full px-5 h-16 docked full-width top-0 z-50 border-none flat no shadows relative">
+<button class="text-emerald-500 dark:text-emerald-400 hover:bg-zinc-50 dark:hover:bg-zinc-900 active:scale-95 transition-transform duration-150 ease-out w-10 h-10 flex items-center justify-center rounded-full">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="font-['Lexend'] font-bold tracking-tighter text-xl font-black italic text-emerald-500 dark:text-emerald-400 tracking-tighter">HABITRACK</div>
+<button class="text-emerald-500 dark:text-emerald-400 font-['Lexend'] font-bold tracking-tighter hover:bg-zinc-50 dark:hover:bg-zinc-900 active:scale-95 transition-transform duration-150 ease-out px-3 py-2 rounded-lg">
+            Skip
+        </button>
+</header>
+<!-- Main Onboarding Canvas -->
+<main class="flex-1 flex flex-col w-full max-w-lg mx-auto px-margin pb-xl pt-sm">
+<!-- Progress Visualizer (Thick Pill) -->
+<div class="w-full mb-lg">
+<div class="h-3 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full w-1/3 transition-all duration-500 ease-out shadow-sm"></div>
+</div>
+</div>
+<!-- Section Header -->
+<div class="mb-lg">
+<h1 class="font-headline-lg text-on-background mb-xs">How do you want to divide your day?</h1>
+<p class="font-body-md text-on-surface-variant">You can always change this later.</p>
+</div>
+<!-- Choice Cards Container (Asymmetric Bento layout feeling) -->
+<div class="flex flex-col gap-md flex-1">
+<!-- Card 1: Standard Blocks (Unselected State) -->
+<button class="group relative w-full flex flex-col text-left bg-surface rounded-[16px] border border-outline-variant p-md shadow-[0_4px_12px_rgba(18,18,18,0.04)] hover:border-primary focus:border-primary focus:ring-2 focus:ring-primary-container transition-all duration-200 card-squish outline-none overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-surface to-surface-container-low opacity-50 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative z-10 flex items-start gap-md w-full">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest text-on-surface flex items-center justify-center shrink-0 group-focus:bg-primary-container group-focus:text-on-primary-container transition-colors">
+<span class="material-symbols-outlined">view_day</span>
+</div>
+<div class="flex-1 pt-1">
+<h2 class="font-headline-md text-on-surface mb-xs">Standard Blocks</h2>
+<p class="font-body-lg text-on-surface-variant">Morning, Work, Evening</p>
+</div>
+<div class="w-6 h-6 rounded-full border-2 border-outline-variant group-focus:border-primary group-focus:bg-primary flex items-center justify-center shrink-0 transition-colors mt-1">
+<span class="material-symbols-outlined text-[16px] text-on-primary opacity-0 group-focus:opacity-100 font-bold">check</span>
+</div>
+</div>
+</button>
+<!-- Card 2: Islamic Preset (Selected/Active State Example) -->
+<div class="relative w-full flex flex-col bg-surface rounded-[16px] border-2 border-primary p-md shadow-[0_8px_24px_rgba(0,110,45,0.08)] transition-all duration-200 outline-none overflow-hidden">
+<!-- Highlight Tint -->
+<div class="absolute inset-0 bg-gradient-to-br from-primary-container/10 to-transparent"></div>
+<div class="relative z-10 flex items-start gap-md w-full mb-md">
+<div class="w-12 h-12 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0 shadow-sm">
+<span class="material-symbols-outlined icon-fill">wb_twilight</span>
+</div>
+<div class="flex-1 pt-1">
+<h2 class="font-headline-md text-on-surface mb-xs">Islamic Preset</h2>
+<p class="font-body-lg text-on-surface-variant">Sync routines with prayer times</p>
+</div>
+<div class="w-6 h-6 rounded-full border-2 border-primary bg-primary flex items-center justify-center shrink-0 transition-colors mt-1 shadow-sm">
+<span class="material-symbols-outlined text-[16px] text-on-primary font-bold">check</span>
+</div>
+</div>
+<!-- Contextual Geolocation Action (Level 2 integration) -->
+<div class="relative z-10 mt-auto pt-sm border-t border-surface-variant flex flex-row items-center justify-between gap-4 bg-surface-container-lowest/50 -mx-md px-md pb-xs">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+</div>
+<p class="font-label-sm text-on-surface-variant leading-tight max-w-[160px]">Requires location access to calculate accurate prayer times.</p>
+</div>
+<button class="px-4 h-10 bg-inverse-surface text-inverse-on-surface font-label-bold rounded-lg hover:bg-on-surface transition-colors active:scale-95 flex-shrink-0 shadow-sm">
+                        Allow Access
+                    </button>
+</div>
+</div>
+</div>
+<!-- Global Action Bottom Anchor -->
+<div class="mt-xl w-full pt-md">
+<button class="w-full h-[56px] bg-primary text-on-primary font-label-bold text-[16px] rounded-full shadow-[0_4px_12px_rgba(0,110,45,0.15)] btn-squish flex items-center justify-center gap-2 hover:brightness-110 transition-all">
+                Continue
+                <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</main>
+</body></html>

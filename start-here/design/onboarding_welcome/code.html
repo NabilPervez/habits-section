@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HabitFlow - Welcome</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed-variant": "#544600",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed-dim": "#e9c400",
+                    "primary-container": "#1db954",
+                    "outline-variant": "#bccbb9",
+                    "surface-variant": "#e1e3e4",
+                    "on-surface-variant": "#3d4a3d",
+                    "on-error-container": "#93000a",
+                    "outline": "#6d7b6c",
+                    "inverse-on-surface": "#f0f1f2",
+                    "secondary": "#705d00",
+                    "surface-container": "#edeeef",
+                    "on-tertiary-container": "#383838",
+                    "inverse-primary": "#53e076",
+                    "surface-dim": "#d9dadb",
+                    "secondary-container": "#fcd400",
+                    "on-tertiary-fixed": "#1c1b1b",
+                    "on-error": "#ffffff",
+                    "primary-fixed": "#72fe8f",
+                    "surface-container-highest": "#e1e3e4",
+                    "secondary-fixed": "#ffe16d",
+                    "on-secondary": "#ffffff",
+                    "surface": "#f8f9fa",
+                    "on-primary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "error": "#ba1a1a",
+                    "on-secondary-container": "#6e5c00",
+                    "primary": "#006e2d",
+                    "tertiary-fixed": "#e5e2e1",
+                    "tertiary-container": "#a3a1a1",
+                    "surface-tint": "#006e2d",
+                    "inverse-surface": "#2e3132",
+                    "background": "#f8f9fa",
+                    "on-surface": "#191c1d",
+                    "surface-container-high": "#e7e8e9",
+                    "on-tertiary-fixed-variant": "#474646",
+                    "surface-container-low": "#f3f4f5",
+                    "surface-bright": "#f8f9fa",
+                    "on-primary-fixed-variant": "#005320",
+                    "tertiary-fixed-dim": "#c8c6c5",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed": "#221b00",
+                    "tertiary": "#5f5e5e",
+                    "primary-fixed-dim": "#53e076",
+                    "on-primary-fixed": "#002108",
+                    "on-primary-container": "#004118",
+                    "on-background": "#191c1d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "64px",
+                    "margin": "20px",
+                    "lg": "40px",
+                    "gutter": "16px",
+                    "base": "8px",
+                    "xs": "4px",
+                    "md": "24px",
+                    "sm": "12px"
+            },
+            "fontFamily": {
+                    "display": [
+                            "Lexend"
+                    ],
+                    "body-md": [
+                            "Lexend"
+                    ],
+                    "label-bold": [
+                            "Lexend"
+                    ],
+                    "headline-md": [
+                            "Lexend"
+                    ],
+                    "label-sm": [
+                            "Lexend"
+                    ],
+                    "body-lg": [
+                            "Lexend"
+                    ],
+                    "headline-lg": [
+                            "Lexend"
+                    ]
+            },
+            "fontSize": {
+                    "display": [
+                            "48px",
+                            {
+                                    "lineHeight": "1.1",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "800"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-bold": [
+                            "14px",
+                            {
+                                    "lineHeight": "1.0",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "1.3",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "label-sm": [
+                            "12px",
+                            {
+                                    "lineHeight": "1.0",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "700"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        /* Base styles to support the fluid grid and typography */
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-lowest min-h-screen flex flex-col font-body-md text-on-surface">
+<!-- 
+      Welcome Screen Layout 
+      Note: Shared nav components (TopAppBar, BottomNavBar) are suppressed here 
+      as this is a Transactional/Onboarding screen per the rules.
+    -->
+<main class="flex-1 w-full max-w-[480px] mx-auto flex flex-col items-center justify-between px-margin pt-xl pb-xl relative overflow-hidden">
+<!-- Ambient Background Glow (Level 1 Depth/Tactile Vibe) -->
+<div class="absolute top-[-10%] left-[-20%] w-[140%] h-[60%] bg-primary-fixed opacity-20 blur-[120px] rounded-full pointer-events-none z-0"></div>
+<!-- Top Area: Vibrant Visual Centerpiece -->
+<div class="flex-1 w-full flex flex-col items-center justify-center relative z-10 mt-md">
+<!-- Graphic Container with Ambient Shadow -->
+<div class="relative w-full max-w-[280px] aspect-square rounded-[32px] bg-surface shadow-[0_12px_40px_rgba(0,0,0,0.06)] flex items-center justify-center overflow-hidden border border-surface-variant" data-alt="Abstract 3D rendering of dynamic fluid waves and spheres in vibrant spotify green and stark white, studio lighting, sharp focus, representing upward momentum and unstoppable energy" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCA2FuDgQ2F6tXQd3tTP0pULoNqBxMD2oRICv5Y1x8Xa41gY5-wNY_bM8wjirVxVGm6ZoImTPB4to1AnTFceJCpFLM_LnAPuEcGXdloe7YL4sXVLNDZATnHWQJ1BsO5mXm_xgF0HftM4vBqlhVwTqYFdmwFCwedqOWcVGtti_5Gae9FFZk-7-6EpH0JeI8XowsoeblvciiY9l7wJ4EAIPROmfTxcmziGEyIbXBrjTwSuIayqDQMIX4zm4k0c4vr5OZ-3MQ8yvCLCCk'); background-size: cover; background-position: center;">
+<!-- Brand Overlay to tie image into palette -->
+<div class="absolute inset-0 bg-primary-container/20 mix-blend-multiply"></div>
+<!-- Inner Floating Badge (Level 2/3 Depth) -->
+<div class="relative z-20 w-32 h-32 bg-surface-container-lowest rounded-full shadow-[0_8px_24px_rgba(0,0,0,0.12)] flex items-center justify-center border-4 border-surface-container-lowest">
+<span class="material-symbols-outlined text-primary text-[72px]" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+</div>
+</div>
+<!-- Bottom Area: Typography & Action -->
+<div class="w-full flex flex-col items-center text-center relative z-10 mt-lg">
+<!-- Headlines -->
+<div class="flex flex-col items-center mb-xl space-y-sm">
+<h1 class="font-display text-display text-on-surface">
+                    Build Momentum,<br/>One Step at a Time.
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-[280px]">
+                    No sign-ups. No walls. Just flow.
+                </p>
+</div>
+<!-- 
+              Primary Action Button 
+              Follows button guidelines: min 56px height, filled primary, bold white text, squishy active state.
+            -->
+<button class="w-full h-[56px] bg-primary text-on-primary font-label-bold text-label-bold rounded-full flex items-center justify-center shadow-[0_8px_16px_rgba(0,110,45,0.15)] hover:bg-surface-tint active:scale-95 transition-transform duration-200 ease-out">
+                Let's Begin
+            </button>
+</div>
+</main>
+</body></html>

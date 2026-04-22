@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Tutorial: Step 3</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#383838",
+                        "surface-container-low": "#f3f4f5",
+                        "primary-container": "#1db954",
+                        "on-background": "#191c1d",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-dim": "#d9dadb",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "tertiary-fixed": "#e5e2e1",
+                        "inverse-on-surface": "#f0f1f2",
+                        "secondary-fixed": "#ffe16d",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#53e076",
+                        "background": "#f8f9fa",
+                        "on-secondary-fixed": "#221b00",
+                        "outline": "#6d7b6c",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "on-secondary-fixed-variant": "#544600",
+                        "surface-bright": "#f8f9fa",
+                        "on-tertiary-fixed": "#1c1b1b",
+                        "primary-fixed-dim": "#53e076",
+                        "secondary-fixed-dim": "#e9c400",
+                        "tertiary": "#5f5e5e",
+                        "on-primary-container": "#004118",
+                        "on-primary-fixed": "#002108",
+                        "surface-tint": "#006e2d",
+                        "primary": "#006e2d",
+                        "on-primary-fixed-variant": "#005320",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#e7e8e9",
+                        "secondary-container": "#fcd400",
+                        "surface-variant": "#e1e3e4",
+                        "on-secondary": "#ffffff",
+                        "on-surface-variant": "#3d4a3d",
+                        "surface": "#f8f9fa",
+                        "on-tertiary-fixed-variant": "#474646",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#191c1d",
+                        "secondary": "#705d00",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#bccbb9",
+                        "primary-fixed": "#72fe8f",
+                        "surface-container": "#edeeef",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#a3a1a1",
+                        "on-secondary-container": "#6e5c00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "xl": "64px",
+                        "margin": "20px",
+                        "sm": "12px",
+                        "gutter": "16px",
+                        "base": "8px",
+                        "lg": "40px",
+                        "md": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Lexend"],
+                        "body-lg": ["Lexend"],
+                        "display": ["Lexend"],
+                        "label-sm": ["Lexend"],
+                        "body-md": ["Lexend"],
+                        "headline-lg": ["Lexend"],
+                        "label-bold": ["Lexend"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "display": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "label-sm": ["12px", { "lineHeight": "1.0", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-bold": ["14px", { "lineHeight": "1.0", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-lowest text-on-surface h-screen w-screen overflow-hidden flex flex-col font-body-md">
+<!-- Top Navigation (Immersive Context) -->
+<header class="w-full flex justify-between items-center px-margin pt-margin pb-base shrink-0">
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-low text-on-surface hover:bg-surface-container active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+<span class="font-label-bold text-label-bold text-tertiary uppercase tracking-widest">Tutorial: Step 3</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-transparent text-on-surface opacity-0 pointer-events-none">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</header>
+<!-- Progress Bar -->
+<div class="px-margin w-full shrink-0">
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full w-full relative">
+<!-- Sparkle pseudo-element for 100% -->
+<div class="absolute inset-0 bg-white/20"></div>
+</div>
+</div>
+</div>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col items-center justify-center px-margin relative z-10">
+<!-- Large Central Card -->
+<div class="bg-surface-container-lowest rounded-[32px] border border-surface-container-highest shadow-[0_16px_40px_-12px_rgba(29,185,84,0.15)] w-full max-w-sm aspect-square flex flex-col items-center justify-center relative overflow-hidden">
+<!-- Background Glow -->
+<div class="absolute inset-0 bg-gradient-to-b from-primary-container/10 to-transparent opacity-50"></div>
+<!-- Icon -->
+<div class="relative z-10 w-32 h-32 rounded-full bg-primary-container/10 flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-[80px] text-primary-container" data-icon="sentiment_very_satisfied" style="font-variation-settings: 'FILL' 1;">sentiment_very_satisfied</span>
+</div>
+<!-- Content -->
+<div class="relative z-10 text-center px-md">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-sm">Smile</h2>
+<p class="font-body-md text-body-md text-tertiary">You're all set! Let's start building better habits.</p>
+</div>
+<!-- Confetti/Sparkle Accents (Static CSS representation) -->
+<div class="absolute top-8 left-8 w-2 h-2 rounded-full bg-secondary-container"></div>
+<div class="absolute top-12 right-12 w-3 h-3 rounded-full bg-primary-container"></div>
+<div class="absolute bottom-16 left-12 w-2 h-2 rounded-full bg-primary-container"></div>
+<div class="absolute bottom-8 right-8 w-2 h-2 rounded-full bg-secondary-container"></div>
+</div>
+</main>
+<!-- Bottom Action Area -->
+<footer class="w-full px-margin pb-xl pt-lg shrink-0 flex flex-col gap-base bg-surface-container-lowest relative z-20">
+<button class="w-full h-16 bg-primary-container text-on-primary rounded-2xl flex items-center justify-center font-headline-md text-headline-md shadow-[0_8px_16px_-4px_rgba(29,185,84,0.25)] hover:bg-[#1ed760] active:scale-[0.98] transition-all duration-150">
+            DONE
+        </button>
+</footer>
+</body></html>

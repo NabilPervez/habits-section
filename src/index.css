@@ -1,0 +1,47 @@
+/* 
+  Brand Context: Spotify Light Mode vibe
+  Colors: #FFFFFF bg, #1DB954 primary success, #121212 text, #FFD700 multiplier
+*/
+:root {
+  --bg-color: #ffffff;
+  --text-main: #121212;
+  --text-secondary: #535353;
+  --primary-success: #1db954;
+  --primary-hover: #1ed760;
+  --highlight-yellow: #ffd700;
+  --card-bg: #f6f6f6;
+  --border-color: #ebebeb;
+  
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app-container {
+  max-width: 480px; /* Mobile first approach */
+  margin: 0 auto;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  box-shadow: 0 0 20px rgba(0,0,0,0.05); /* subtle shadow for desktop view */
+}
+
+/* Base button styles */
+button {
+  font-family: var(--font-family);
+  cursor: pointer;
+  border: none;
+  background: none;
+}

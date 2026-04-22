@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Section Mastered - Habits</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#e7e8e9",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-surface-variant": "#3d4a3d",
+                        "primary-fixed-dim": "#53e076",
+                        "tertiary-fixed": "#e5e2e1",
+                        "on-tertiary-fixed": "#1c1b1b",
+                        "inverse-surface": "#2e3132",
+                        "primary-container": "#1db954",
+                        "tertiary-container": "#a3a1a1",
+                        "on-primary": "#ffffff",
+                        "on-background": "#191c1d",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#d9dadb",
+                        "surface": "#f8f9fa",
+                        "secondary-fixed-dim": "#e9c400",
+                        "primary": "#006e2d",
+                        "on-tertiary-container": "#383838",
+                        "surface-tint": "#006e2d",
+                        "secondary-container": "#fcd400",
+                        "on-secondary-fixed": "#221b00",
+                        "on-tertiary-fixed-variant": "#474646",
+                        "outline": "#6d7b6c",
+                        "on-primary-container": "#004118",
+                        "inverse-primary": "#53e076",
+                        "surface-container-low": "#f3f4f5",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "surface-container": "#edeeef",
+                        "secondary-fixed": "#ffe16d",
+                        "surface-variant": "#e1e3e4",
+                        "secondary": "#705d00",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#f8f9fa",
+                        "on-surface": "#191c1d",
+                        "primary-fixed": "#72fe8f",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#bccbb9",
+                        "background": "#f8f9fa",
+                        "on-primary-fixed": "#002108",
+                        "tertiary": "#5f5e5e",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-secondary-container": "#6e5c00",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#544600",
+                        "on-primary-fixed-variant": "#005320"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "lg": "40px",
+                        "base": "8px",
+                        "md": "24px",
+                        "gutter": "16px",
+                        "xl": "64px",
+                        "sm": "12px",
+                        "margin": "20px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Lexend"],
+                        "body-md": ["Lexend"],
+                        "label-sm": ["Lexend"],
+                        "headline-lg": ["Lexend"],
+                        "body-lg": ["Lexend"],
+                        "label-bold": ["Lexend"],
+                        "display": ["Lexend"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "1.0", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-bold": ["14px", { "lineHeight": "1.0", "fontWeight": "700" }],
+                        "display": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom celebratory particle effect placeholder */
+        .celebration-bg {
+            background-image: radial-gradient(circle at center, rgba(29, 185, 84, 0.1) 0%, rgba(248, 249, 250, 0) 70%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col items-center justify-center p-margin">
+<!-- Celebration Canvas -->
+<main class="w-full max-w-md bg-surface-container-lowest rounded-xl shadow-[0_12px_24px_rgba(18,18,18,0.08)] overflow-hidden relative celebration-bg">
+<!-- Header Section -->
+<div class="px-margin pt-xl pb-md text-center relative z-10">
+<div class="inline-flex items-center justify-center w-24 h-24 bg-primary-container rounded-full mb-md shadow-[0_8px_16px_rgba(29,185,84,0.3)]">
+<span class="material-symbols-outlined fill text-on-primary text-[48px]" data-icon="social_leaderboard">social_leaderboard</span>
+</div>
+<h1 class="font-display text-display text-on-surface mb-xs">Section Mastered!</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Morning Routine Complete</p>
+</div>
+<!-- XP & Multipliers Section -->
+<div class="px-margin py-md bg-surface-container-low border-y border-surface-container-highest relative z-10">
+<div class="flex items-center justify-between mb-sm">
+<span class="font-label-bold text-label-bold text-on-surface-variant">Total XP Earned</span>
+<span class="font-headline-lg text-headline-lg text-primary-container">+450 XP</span>
+</div>
+<div class="flex gap-sm">
+<!-- Multiplier Badge -->
+<div class="inline-flex items-center gap-xs px-sm py-xs bg-secondary-container rounded-full shadow-[0_4px_8px_rgba(252,212,0,0.2)]">
+<span class="material-symbols-outlined fill text-on-secondary-container text-[16px]" data-icon="local_fire_department">local_fire_department</span>
+<span class="font-label-bold text-label-bold text-on-secondary-container">2x Perfect Combo</span>
+</div>
+<div class="inline-flex items-center gap-xs px-sm py-xs bg-surface-container-highest rounded-full">
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]" data-icon="schedule">schedule</span>
+<span class="font-label-bold text-label-bold text-on-surface-variant">+50 Early Bird</span>
+</div>
+</div>
+</div>
+<!-- Task Checklist -->
+<div class="p-margin relative z-10">
+<h2 class="font-label-bold text-label-bold text-on-surface-variant mb-md uppercase tracking-wider">Completed Tasks</h2>
+<ul class="space-y-sm">
+<li class="flex items-center gap-sm p-sm bg-surface rounded-lg border border-surface-container-highest shadow-[0_4px_12px_rgba(18,18,18,0.04)]">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-[18px]" data-icon="check">check</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-medium">Drink Water</span>
+<span class="ml-auto font-label-bold text-label-bold text-tertiary">+50 XP</span>
+</li>
+<li class="flex items-center gap-sm p-sm bg-surface rounded-lg border border-surface-container-highest shadow-[0_4px_12px_rgba(18,18,18,0.04)]">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-[18px]" data-icon="check">check</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-medium">Meditation (10m)</span>
+<span class="ml-auto font-label-bold text-label-bold text-tertiary">+100 XP</span>
+</li>
+<li class="flex items-center gap-sm p-sm bg-surface rounded-lg border border-surface-container-highest shadow-[0_4px_12px_rgba(18,18,18,0.04)]">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-[18px]" data-icon="check">check</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-medium">Read 10 Pages</span>
+<span class="ml-auto font-label-bold text-label-bold text-tertiary">+50 XP</span>
+</li>
+</ul>
+</div>
+<!-- Action Button -->
+<div class="p-margin pt-0 relative z-10 mt-md">
+<button class="w-full h-[56px] bg-primary-container text-on-primary font-headline-md text-headline-md rounded-xl shadow-[0_8px_16px_rgba(29,185,84,0.2)] active:scale-95 transition-transform duration-150 flex items-center justify-center gap-sm">
+<span>Return to Timeline</span>
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</main>
+</body></html>

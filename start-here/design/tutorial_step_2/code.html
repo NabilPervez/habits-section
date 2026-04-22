@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tutorial: Step 2 - Stretch</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#383838",
+                    "surface-container-low": "#f3f4f5",
+                    "primary-container": "#1db954",
+                    "on-background": "#191c1d",
+                    "surface-container-highest": "#e1e3e4",
+                    "surface-dim": "#d9dadb",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#c8c6c5",
+                    "tertiary-fixed": "#e5e2e1",
+                    "inverse-on-surface": "#f0f1f2",
+                    "secondary-fixed": "#ffe16d",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#53e076",
+                    "background": "#f8f9fa",
+                    "on-secondary-fixed": "#221b00",
+                    "outline": "#6d7b6c",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#2e3132",
+                    "on-secondary-fixed-variant": "#544600",
+                    "surface-bright": "#f8f9fa",
+                    "on-tertiary-fixed": "#1c1b1b",
+                    "primary-fixed-dim": "#53e076",
+                    "secondary-fixed-dim": "#e9c400",
+                    "tertiary": "#5f5e5e",
+                    "on-primary-container": "#004118",
+                    "on-primary-fixed": "#002108",
+                    "surface-tint": "#006e2d",
+                    "primary": "#006e2d",
+                    "on-primary-fixed-variant": "#005320",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-high": "#e7e8e9",
+                    "secondary-container": "#fcd400",
+                    "surface-variant": "#e1e3e4",
+                    "on-secondary": "#ffffff",
+                    "on-surface-variant": "#3d4a3d",
+                    "surface": "#f8f9fa",
+                    "on-tertiary-fixed-variant": "#474646",
+                    "on-error-container": "#93000a",
+                    "on-surface": "#191c1d",
+                    "secondary": "#705d00",
+                    "error": "#ba1a1a",
+                    "outline-variant": "#bccbb9",
+                    "primary-fixed": "#72fe8f",
+                    "surface-container": "#edeeef",
+                    "error-container": "#ffdad6",
+                    "tertiary-container": "#a3a1a1",
+                    "on-secondary-container": "#6e5c00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "xl": "64px",
+                    "margin": "20px",
+                    "sm": "12px",
+                    "gutter": "16px",
+                    "base": "8px",
+                    "lg": "40px",
+                    "md": "24px"
+            },
+            "fontFamily": {
+                    "headline-md": [
+                            "Lexend"
+                    ],
+                    "body-lg": [
+                            "Lexend"
+                    ],
+                    "display": [
+                            "Lexend"
+                    ],
+                    "label-sm": [
+                            "Lexend"
+                    ],
+                    "body-md": [
+                            "Lexend"
+                    ],
+                    "headline-lg": [
+                            "Lexend"
+                    ],
+                    "label-bold": [
+                            "Lexend"
+                    ]
+            },
+            "fontSize": {
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "1.3",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "display": [
+                            "48px",
+                            {
+                                    "lineHeight": "1.1",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "800"
+                            }
+                    ],
+                    "label-sm": [
+                            "12px",
+                            {
+                                    "lineHeight": "1.0",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "label-bold": [
+                            "14px",
+                            {
+                                    "lineHeight": "1.0",
+                                    "fontWeight": "700"
+                            }
+                    ]
+            }
+        },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-lowest text-on-surface h-screen flex flex-col font-body-md overflow-hidden">
+<!-- Top AppBar (Suppressed normal nav styles for tutorial flow, keeping just a structural header) -->
+<header class="w-full flex justify-between items-center px-margin h-16 pt-safe">
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant rounded-full hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[24px]">close</span>
+</button>
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider">Tutorial: Step 2</span>
+<div class="w-10"></div> <!-- Spacer for centering -->
+</header>
+<!-- Progress Bar -->
+<div class="px-margin w-full">
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-[#1DB954] rounded-full w-[66%]"></div>
+</div>
+</div>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col items-center justify-center px-margin pt-lg pb-xl relative">
+<!-- Large Central Card -->
+<div class="w-full max-w-sm bg-surface-container-lowest rounded-[32px] shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-surface-container-highest p-8 flex flex-col items-center justify-center aspect-square relative overflow-hidden">
+<!-- Background Decorative Element -->
+<div class="absolute inset-0 bg-gradient-to-b from-[#1DB954]/5 to-transparent pointer-events-none"></div>
+<!-- Icon Wrapper -->
+<div class="w-32 h-32 bg-[#1DB954]/10 rounded-full flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-[80px] text-[#1DB954]">fitness_center</span>
+</div>
+<!-- Title -->
+<h1 class="font-display text-display text-on-surface text-center mb-sm">Stretch</h1>
+<!-- Description -->
+<p class="font-body-lg text-body-lg text-on-surface-variant text-center max-w-[240px]">
+                Take 5 minutes to stretch your legs and back. It prepares your body.
+            </p>
+</div>
+</main>
+<!-- Bottom Action Area -->
+<footer class="w-full px-margin pb-lg pt-md">
+<button class="w-full h-16 bg-[#1DB954] text-white rounded-2xl shadow-[0_8px_24px_rgba(29,185,84,0.3)] flex items-center justify-center font-headline-md text-headline-md hover:bg-[#1aa34a] active:scale-[0.98] active:shadow-[0_4px_12px_rgba(29,185,84,0.4)] transition-all duration-200">
+            DONE
+        </button>
+</footer>
+</body></html>

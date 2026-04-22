@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Routine Builder</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-tertiary-container": "#383838",
+                        "surface": "#f8f9fa",
+                        "surface-bright": "#f8f9fa",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#f8f9fa",
+                        "inverse-on-surface": "#f0f1f2",
+                        "primary-fixed-dim": "#53e076",
+                        "inverse-surface": "#2e3132",
+                        "inverse-primary": "#53e076",
+                        "surface-dim": "#d9dadb",
+                        "on-error": "#ffffff",
+                        "outline-variant": "#bccbb9",
+                        "on-background": "#191c1d",
+                        "surface-container-high": "#e7e8e9",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-container": "#edeeef",
+                        "secondary-container": "#fcd400",
+                        "primary": "#006e2d",
+                        "on-tertiary-fixed": "#1c1b1b",
+                        "on-tertiary": "#ffffff",
+                        "outline": "#6d7b6c",
+                        "surface-variant": "#e1e3e4",
+                        "on-primary-fixed": "#002108",
+                        "tertiary-fixed": "#e5e2e1",
+                        "secondary-fixed": "#ffe16d",
+                        "on-tertiary-fixed-variant": "#474646",
+                        "secondary": "#705d00",
+                        "on-surface-variant": "#3d4a3d",
+                        "tertiary": "#5f5e5e",
+                        "surface-container-low": "#f3f4f5",
+                        "primary-container": "#1db954",
+                        "secondary-fixed-dim": "#e9c400",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#a3a1a1",
+                        "surface-tint": "#006e2d",
+                        "on-primary-fixed-variant": "#005320",
+                        "on-primary-container": "#004118",
+                        "on-secondary-fixed": "#221b00",
+                        "on-secondary-container": "#6e5c00",
+                        "on-secondary": "#ffffff",
+                        "on-surface": "#191c1d",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "primary-fixed": "#72fe8f",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#544600"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "gutter": "16px",
+                        "margin": "20px",
+                        "xl": "64px",
+                        "lg": "40px",
+                        "md": "24px",
+                        "base": "8px",
+                        "xs": "4px",
+                        "sm": "12px"
+                    },
+                    fontFamily: {
+                        "label-sm": ["Lexend"],
+                        "headline-lg": ["Lexend"],
+                        "headline-md": ["Lexend"],
+                        "body-lg": ["Lexend"],
+                        "body-md": ["Lexend"],
+                        "display": ["Lexend"],
+                        "label-bold": ["Lexend"]
+                    },
+                    fontSize: {
+                        "label-sm": ["12px", { "lineHeight": "1.0", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "display": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "label-bold": ["14px", { "lineHeight": "1.0", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen relative font-body-md selection:bg-primary-container selection:text-on-primary">
+<!-- TopAppBar -->
+<header class="bg-white dark:bg-zinc-950 fixed w-full top-0 border-b border-zinc-100 dark:border-zinc-800 shadow-[0_4px_12px_0px_rgba(18,18,18,0.04)] z-50">
+<div class="flex justify-between items-center px-5 h-16 w-full max-w-screen-md mx-auto hover:bg-zinc-50 dark:hover:bg-zinc-900 active:scale-95 transition-all duration-200 ease-out">
+<!-- Leading Avatar -->
+<div class="w-8 h-8 rounded-full bg-surface-container overflow-hidden shrink-0 shadow-sm border border-outline-variant/30">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="Close up portrait of a young woman with natural makeup looking relaxed in soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB32cd0qU8lpDggztilndv_XaoNUmDRcSqkLVTIO11ooNevSmHEEwGT0aOOIHRmeDxa64ZIXPp8gD38elgO4y5jmd-2fBT_97PISqIeG44NZNJzbpCbaZVo_7qe5IUSXZDJfll-YGGRyBHvarHfE7-QHmd-RA0MflpkZ-PkdYEaFX5gZoVKia4kVD8s0DDfytSnn90PcSQDMbMIxsvclH9S9OgyTd8Po5iO5vD7Zx4c5KNAOmBI5M4VQxULG1bdGyUeC6aTGvJs95Q"/>
+</div>
+<!-- Headline -->
+<div class="font-lexend font-bold tracking-tight text-xl text-zinc-900 dark:text-zinc-50 truncate flex-1 text-center">
+                HabitFlow
+            </div>
+<!-- Trailing Icon -->
+<div class="shrink-0 flex items-center justify-center w-8 h-8">
+<span class="material-symbols-outlined text-green-500 dark:text-green-400" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="w-full max-w-screen-md mx-auto pt-[88px] px-margin pb-[200px] flex flex-col">
+<!-- Page Title -->
+<header class="mb-lg mt-md">
+<h1 class="font-display text-display text-on-surface">Routine Builder</h1>
+<p class="font-body-md text-body-md text-tertiary mt-2">Design your ideal day, block by block.</p>
+</header>
+<!-- Vertical Routine Sections -->
+<div class="flex flex-col gap-lg">
+<!-- Section: Morning -->
+<section class="flex flex-col gap-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary-container" style="font-variation-settings: 'FILL' 1;">routine</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Morning</h2>
+</div>
+<div class="flex flex-col gap-base">
+<!-- Habit Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-variant p-sm flex items-center gap-sm shadow-[0_4px_12px_rgba(18,18,18,0.04)] touch-none select-none hover:shadow-[0_6px_16px_rgba(18,18,18,0.06)] transition-shadow">
+<div class="p-1 cursor-grab active:cursor-grabbing">
+<span class="material-symbols-outlined text-tertiary-container">drag_indicator</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-inverse-on-surface flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary-container">water_drop</span>
+</div>
+<span class="font-body-lg text-body-lg text-on-surface flex-1 font-medium">Wash Face</span>
+</div>
+<!-- Habit Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-variant p-sm flex items-center gap-sm shadow-[0_4px_12px_rgba(18,18,18,0.04)] touch-none select-none hover:shadow-[0_6px_16px_rgba(18,18,18,0.06)] transition-shadow">
+<div class="p-1 cursor-grab active:cursor-grabbing">
+<span class="material-symbols-outlined text-tertiary-container">drag_indicator</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-inverse-on-surface flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary">coffee</span>
+</div>
+<span class="font-body-lg text-body-lg text-on-surface flex-1 font-medium">Make Coffee</span>
+</div>
+<!-- Habit Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-variant p-sm flex items-center gap-sm shadow-[0_4px_12px_rgba(18,18,18,0.04)] touch-none select-none hover:shadow-[0_6px_16px_rgba(18,18,18,0.06)] transition-shadow">
+<div class="p-1 cursor-grab active:cursor-grabbing">
+<span class="material-symbols-outlined text-tertiary-container">drag_indicator</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-inverse-on-surface flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">menu_book</span>
+</div>
+<span class="font-body-lg text-body-lg text-on-surface flex-1 font-medium">Read 10 Pages</span>
+</div>
+</div>
+</section>
+<!-- Section: Work -->
+<section class="flex flex-col gap-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">work</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Work</h2>
+</div>
+<div class="flex flex-col gap-base">
+<!-- Habit Card 4 -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-variant p-sm flex items-center gap-sm shadow-[0_4px_12px_rgba(18,18,18,0.04)] touch-none select-none hover:shadow-[0_6px_16px_rgba(18,18,18,0.06)] transition-shadow">
+<div class="p-1 cursor-grab active:cursor-grabbing">
+<span class="material-symbols-outlined text-tertiary-container">drag_indicator</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-inverse-on-surface flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-tertiary">inbox</span>
+</div>
+<span class="font-body-lg text-body-lg text-on-surface flex-1 font-medium">Clear Inbox</span>
+</div>
+<!-- Habit Card 5 -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-variant p-sm flex items-center gap-sm shadow-[0_4px_12px_rgba(18,18,18,0.04)] touch-none select-none hover:shadow-[0_6px_16px_rgba(18,18,18,0.06)] transition-shadow">
+<div class="p-1 cursor-grab active:cursor-grabbing">
+<span class="material-symbols-outlined text-tertiary-container">drag_indicator</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-inverse-on-surface flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary-container">psychology</span>
+</div>
+<span class="font-body-lg text-body-lg text-on-surface flex-1 font-medium">Deep Work Block</span>
+<div class="px-3 py-1 bg-surface-container rounded-full">
+<span class="font-label-bold text-label-bold text-on-surface-variant">90m</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Evening -->
+<section class="flex flex-col gap-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">nightlight</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Evening</h2>
+</div>
+<div class="flex flex-col gap-base">
+<!-- Habit Card 6 -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-variant p-sm flex items-center gap-sm shadow-[0_4px_12px_rgba(18,18,18,0.04)] touch-none select-none hover:shadow-[0_6px_16px_rgba(18,18,18,0.06)] transition-shadow">
+<div class="p-1 cursor-grab active:cursor-grabbing">
+<span class="material-symbols-outlined text-tertiary-container">drag_indicator</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-inverse-on-surface flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-tertiary">power_settings_new</span>
+</div>
+<span class="font-body-lg text-body-lg text-on-surface flex-1 font-medium">Screens Off</span>
+<div class="px-3 py-1 bg-surface-container rounded-full">
+<span class="font-label-bold text-label-bold text-on-surface-variant">10:00 PM</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Sticky Quick Add Bar -->
+<div class="fixed bottom-[112px] left-0 w-full z-40 px-margin pointer-events-none flex justify-center">
+<div class="w-full max-w-screen-md pointer-events-auto">
+<div class="bg-surface-container-lowest/80 backdrop-blur-xl rounded-[24px] p-2 shadow-[0_8px_32px_rgba(18,18,18,0.12)] border border-surface-variant flex gap-2 items-center">
+<div class="flex-1 relative">
+<input class="w-full bg-surface rounded-[16px] border border-outline-variant/50 focus:border-primary-container focus:ring-1 focus:ring-primary-container font-body-lg text-body-lg h-14 px-4 placeholder:text-tertiary-container outline-none transition-colors" placeholder="Add a habit..." type="text"/>
+</div>
+<button class="shrink-0 w-14 h-14 rounded-[16px] bg-primary-container text-on-primary flex items-center justify-center active:scale-95 transition-transform shadow-[0_4px_12px_rgba(29,185,84,0.25)] hover:shadow-[0_6px_16px_rgba(29,185,84,0.35)]">
+<span class="material-symbols-outlined text-[28px] font-bold">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- BottomNavBar -->
+<nav class="bg-white/90 dark:bg-zinc-950/90 backdrop-blur-md fixed bottom-0 w-full z-50 border-t rounded-t-[32px] border-zinc-100 dark:border-zinc-800 shadow-[0_-8px_24px_rgba(0,0,0,0.05)]">
+<div class="flex justify-around items-center h-24 pb-6 px-4 w-full max-w-screen-md mx-auto">
+<!-- Timeline (Inactive) -->
+<button class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-600 px-5 py-2 hover:text-zinc-900 dark:hover:text-zinc-100 active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined text-[24px]">schedule</span>
+<span class="font-lexend text-[10px] font-semibold uppercase tracking-wider mt-1">Timeline</span>
+</button>
+<!-- Builder (Active) -->
+<button class="flex flex-col items-center justify-center text-green-500 dark:text-green-400 bg-green-50 dark:bg-green-900/20 rounded-2xl px-5 py-2 hover:text-zinc-900 dark:hover:text-zinc-100 active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">edit_calendar</span>
+<span class="font-lexend text-[10px] font-semibold uppercase tracking-wider mt-1">Builder</span>
+</button>
+<!-- Stats (Inactive) -->
+<button class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-600 px-5 py-2 hover:text-zinc-900 dark:hover:text-zinc-100 active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined text-[24px]">leaderboard</span>
+<span class="font-lexend text-[10px] font-semibold uppercase tracking-wider mt-1">Stats</span>
+</button>
+<!-- Settings (Inactive) -->
+<button class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-600 px-5 py-2 hover:text-zinc-900 dark:hover:text-zinc-100 active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined text-[24px]">settings</span>
+<span class="font-lexend text-[10px] font-semibold uppercase tracking-wider mt-1">Settings</span>
+</button>
+</div>
+</nav>
+</body></html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tutorial: Complete</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Lexend -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#383838",
+                    "surface-container-low": "#f3f4f5",
+                    "primary-container": "#1db954",
+                    "on-background": "#191c1d",
+                    "surface-container-highest": "#e1e3e4",
+                    "surface-dim": "#d9dadb",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#c8c6c5",
+                    "tertiary-fixed": "#e5e2e1",
+                    "inverse-on-surface": "#f0f1f2",
+                    "secondary-fixed": "#ffe16d",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#53e076",
+                    "background": "#f8f9fa",
+                    "on-secondary-fixed": "#221b00",
+                    "outline": "#6d7b6c",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#2e3132",
+                    "on-secondary-fixed-variant": "#544600",
+                    "surface-bright": "#f8f9fa",
+                    "on-tertiary-fixed": "#1c1b1b",
+                    "primary-fixed-dim": "#53e076",
+                    "secondary-fixed-dim": "#e9c400",
+                    "tertiary": "#5f5e5e",
+                    "on-primary-container": "#004118",
+                    "on-primary-fixed": "#002108",
+                    "surface-tint": "#006e2d",
+                    "primary": "#006e2d",
+                    "on-primary-fixed-variant": "#005320",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-high": "#e7e8e9",
+                    "secondary-container": "#fcd400",
+                    "surface-variant": "#e1e3e4",
+                    "on-secondary": "#ffffff",
+                    "on-surface-variant": "#3d4a3d",
+                    "surface": "#f8f9fa",
+                    "on-tertiary-fixed-variant": "#474646",
+                    "on-error-container": "#93000a",
+                    "on-surface": "#191c1d",
+                    "secondary": "#705d00",
+                    "error": "#ba1a1a",
+                    "outline-variant": "#bccbb9",
+                    "primary-fixed": "#72fe8f",
+                    "surface-container": "#edeeef",
+                    "error-container": "#ffdad6",
+                    "tertiary-container": "#a3a1a1",
+                    "on-secondary-container": "#6e5c00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "xl": "64px",
+                    "margin": "20px",
+                    "sm": "12px",
+                    "gutter": "16px",
+                    "base": "8px",
+                    "lg": "40px",
+                    "md": "24px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Lexend"],
+                    "body-lg": ["Lexend"],
+                    "display": ["Lexend"],
+                    "label-sm": ["Lexend"],
+                    "body-md": ["Lexend"],
+                    "headline-lg": ["Lexend"],
+                    "label-bold": ["Lexend"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                    "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                    "display": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                    "label-sm": ["12px", { "lineHeight": "1.0", "fontWeight": "500" }],
+                    "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                    "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                    "label-bold": ["14px", { "lineHeight": "1.0", "fontWeight": "700" }]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body-md text-body-md text-on-surface antialiased min-h-screen relative overflow-hidden flex flex-col selection:bg-primary-container selection:text-surface-container-lowest">
+<!-- Static Confetti / Festive Background Layer -->
+<div class="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+<!-- Top Left Cluster -->
+<div class="absolute top-[10%] left-[15%] w-[12px] h-[12px] bg-primary-container rounded-full opacity-60"></div>
+<div class="absolute top-[15%] left-[25%] w-[8px] h-[8px] bg-secondary-container rounded-full opacity-80"></div>
+<div class="absolute top-[8%] left-[30%] w-[16px] h-[4px] bg-tertiary rotate-45 opacity-40"></div>
+<!-- Top Right Cluster -->
+<div class="absolute top-[12%] right-[20%] w-[14px] h-[14px] bg-secondary-container rounded-sm rotate-12 opacity-90"></div>
+<div class="absolute top-[20%] right-[10%] w-[10px] h-[10px] bg-primary-container rounded-full opacity-50"></div>
+<!-- Mid Left Cluster -->
+<div class="absolute top-[40%] left-[5%] w-[18px] h-[18px] bg-secondary-container rounded-full opacity-30"></div>
+<div class="absolute top-[50%] left-[12%] w-[8px] h-[24px] bg-primary-container rounded-full rotate-[-15deg] opacity-40"></div>
+<!-- Mid Right Cluster -->
+<div class="absolute top-[45%] right-[8%] w-[12px] h-[12px] bg-tertiary-container rounded-full opacity-50"></div>
+<div class="absolute top-[35%] right-[15%] w-[10px] h-[10px] bg-primary-container rounded-sm rotate-45 opacity-70"></div>
+<!-- Bottom Cluster -->
+<div class="absolute bottom-[20%] left-[20%] w-[16px] h-[16px] bg-secondary-container rounded-full opacity-60"></div>
+<div class="absolute bottom-[15%] right-[25%] w-[12px] h-[12px] bg-primary-container rounded-full opacity-80"></div>
+<div class="absolute bottom-[25%] right-[15%] w-[20px] h-[6px] bg-tertiary-container rotate-[-30deg] opacity-50"></div>
+<!-- Ambient Glow -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-primary-container/5 rounded-full blur-3xl"></div>
+<div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] bg-secondary-container/10 rounded-full blur-2xl"></div>
+</div>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full max-w-md mx-auto px-margin py-xl flex flex-col justify-center items-center relative z-10">
+<!-- Celebratory Icon -->
+<div class="w-24 h-24 bg-surface-container-lowest rounded-full flex items-center justify-center shadow-[0_4px_12px_rgba(18,18,18,0.04)] mb-md border border-surface-variant relative">
+<span class="material-symbols-outlined text-[48px] text-primary-container" style="font-variation-settings: 'FILL' 1;">
+                workspace_premium
+            </span>
+<!-- Sparkles -->
+<span class="material-symbols-outlined absolute -top-xs -right-xs text-secondary-container text-[24px]" style="font-variation-settings: 'FILL' 1;">
+                stars
+            </span>
+</div>
+<!-- Headline -->
+<h1 class="font-display text-display text-on-surface text-center mb-sm px-xs">
+            Routine Mastered!
+        </h1>
+<p class="font-body-md text-body-md text-on-surface-variant text-center mb-xl max-w-[280px]">
+            You've successfully completed the setup. The groundwork is laid.
+        </p>
+<!-- Multiplier Badge -->
+<div class="bg-secondary-container text-on-secondary-container font-label-bold text-label-bold px-md py-xs rounded-full uppercase tracking-widest shadow-[0_2px_8px_rgba(252,212,0,0.2)] mb-md flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">
+                bolt
+            </span>
+            2x MULTIPLIER
+        </div>
+<!-- Tactile XP Card -->
+<div class="bg-surface-container-lowest shadow-[0_4px_12px_rgba(18,18,18,0.04)] border border-surface-variant rounded-xl p-lg w-full max-w-xs flex flex-col items-center justify-center mb-xl relative overflow-hidden">
+<!-- Subtle internal glow -->
+<div class="absolute inset-0 bg-gradient-to-b from-primary-container/5 to-transparent pointer-events-none"></div>
+<h2 class="font-label-sm text-label-sm text-outline uppercase tracking-widest mb-base relative z-10">
+                Total XP Earned
+            </h2>
+<div class="flex items-baseline gap-xs relative z-10 text-primary-container">
+<span class="font-display text-display">30</span>
+<span class="font-headline-md text-headline-md">XP</span>
+</div>
+</div>
+</main>
+<!-- Bottom Action Dock -->
+<div class="w-full max-w-md mx-auto px-margin pb-xl pt-base relative z-10">
+<button class="w-full h-[56px] bg-primary-container text-surface-container-lowest font-label-bold text-label-bold rounded-xl flex items-center justify-center gap-sm shadow-[0_8px_16px_rgba(29,185,84,0.15)] active:scale-95 active:shadow-[0_4px_8px_rgba(29,185,84,0.1)] transition-all duration-150 ease-out">
+            Go to Timeline
+            <span class="material-symbols-outlined text-[20px]">
+                arrow_forward
+            </span>
+</button>
+</div>
+</body></html>

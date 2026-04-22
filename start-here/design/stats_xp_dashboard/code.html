@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gamified Stats &amp; XP Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#e5e2e1",
+                        "on-tertiary-fixed": "#1c1b1b",
+                        "on-error-container": "#93000a",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#53e076",
+                        "on-primary-container": "#004118",
+                        "secondary": "#705d00",
+                        "surface-bright": "#f8f9fa",
+                        "on-surface": "#191c1d",
+                        "outline-variant": "#bccbb9",
+                        "on-surface-variant": "#3d4a3d",
+                        "tertiary": "#5f5e5e",
+                        "surface-container": "#edeeef",
+                        "outline": "#6d7b6c",
+                        "on-secondary-container": "#6e5c00",
+                        "primary-container": "#1db954",
+                        "inverse-surface": "#2e3132",
+                        "secondary-fixed-dim": "#e9c400",
+                        "on-primary-fixed": "#002108",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#006e2d",
+                        "inverse-on-surface": "#f0f1f2",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#544600",
+                        "surface-container-low": "#f3f4f5",
+                        "inverse-primary": "#53e076",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "on-background": "#191c1d",
+                        "secondary-container": "#fcd400",
+                        "background": "#f8f9fa",
+                        "tertiary-container": "#a3a1a1",
+                        "surface": "#f8f9fa",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#d9dadb",
+                        "secondary-fixed": "#ffe16d",
+                        "surface-container-high": "#e7e8e9",
+                        "on-tertiary-container": "#383838",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#e1e3e4",
+                        "on-tertiary-fixed-variant": "#474646",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#72fe8f",
+                        "surface-tint": "#006e2d",
+                        "on-secondary-fixed": "#221b00",
+                        "on-primary-fixed-variant": "#005320"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "24px",
+                        "base": "8px",
+                        "xs": "4px",
+                        "margin": "20px",
+                        "xl": "64px",
+                        "lg": "40px",
+                        "gutter": "16px",
+                        "sm": "12px"
+                    },
+                    "fontFamily": {
+                        "display": ["Lexend"],
+                        "headline-lg": ["Lexend"],
+                        "headline-md": ["Lexend"],
+                        "body-md": ["Lexend"],
+                        "body-lg": ["Lexend"],
+                        "label-bold": ["Lexend"],
+                        "label-sm": ["Lexend"]
+                    },
+                    "fontSize": {
+                        "display": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-bold": ["14px", {"lineHeight": "1.0", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "1.0", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background antialiased min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-white/90 dark:bg-zinc-950/90 backdrop-blur-md font-lexend font-extrabold tracking-tight docked full-width top-0 z-50 sticky border-b border-zinc-100 dark:border-zinc-800 shadow-[0_4px_12px_rgba(0,0,0,0.04)] flex justify-between items-center px-5 h-16 w-full text-on-surface">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-variant flex items-center justify-center">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="Portrait of a young adult looking directly at the camera, neutral expression, clean lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfqMe1fwxZQ_aP9KNiRjRsE-ia6ysBoeTubK6GyJHoRu4RZ-24OGg64xDGjao6qqCjf9oRfnCiQv5qPSfvgx6FhgZC2zQZDb4xMUXb-camUMa_sVkUuHRlCDNq8aiiIUogXP1WWsOAbVuQoxtI5LrJrHXk05KhrAFrBRLG5vAXQecrycHX8b_sY9D-JW38RbHNGyCzOiufKYrmU-xEwrUXOM7-5mof6pDO-HBoP0-DZU21qfqFPo-OWb_lMyFCI8CpVR6FHtbfR4A"/>
+</div>
+</div>
+<h1 class="font-headline-md text-headline-md">Level 24</h1>
+<div class="font-label-bold text-label-bold text-primary-container">
+            2,450 XP
+        </div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow flex flex-col px-margin py-md gap-lg md:max-w-3xl md:mx-auto md:w-full mb-[100px]">
+<!-- Hero Card -->
+<section class="bg-surface-container-lowest rounded-[24px] p-md shadow-[0_4px_24px_rgba(18,18,18,0.06)] border border-surface-variant flex flex-col items-center text-center gap-base relative overflow-hidden">
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-primary-container/10 rounded-full blur-2xl"></div>
+<div class="absolute -bottom-10 -left-10 w-32 h-32 bg-secondary-container/10 rounded-full blur-2xl"></div>
+<span class="material-symbols-outlined text-5xl text-secondary-fixed-dim" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<div class="flex flex-col gap-xs z-10">
+<h2 class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider">Total Lifetime XP</h2>
+<div class="font-display text-display text-primary-container">12,450 <span class="font-headline-lg text-headline-lg text-on-surface">XP</span></div>
+<p class="font-body-md text-body-md text-on-surface mt-xs">Level 24 Routine Master</p>
+</div>
+<!-- Progress Bar -->
+<div class="w-full bg-surface-container h-4 rounded-full mt-sm overflow-hidden relative">
+<div class="absolute top-0 left-0 h-full bg-primary-container w-[75%] rounded-full"></div>
+</div>
+<div class="w-full flex justify-between font-label-sm text-label-sm text-on-surface-variant mt-xs">
+<span>12,450 XP</span>
+<span>13,000 XP to Lvl 25</span>
+</div>
+</section>
+<!-- Streak Banner -->
+<section class="bg-gradient-to-r from-secondary-container to-secondary-fixed text-on-secondary-container rounded-xl p-sm flex items-center justify-between shadow-[0_4px_12px_rgba(252,212,0,0.2)]">
+<div class="flex items-center gap-sm">
+<div class="bg-white/30 rounded-full p-2 flex items-center justify-center backdrop-blur-sm">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md">15 Day Streak</h3>
+<p class="font-body-md text-body-md opacity-90">You're on fire! Keep it up.</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-secondary-container">chevron_right</span>
+</section>
+<!-- Metrics Grid -->
+<section class="grid grid-cols-2 gap-sm">
+<!-- Metric 1 -->
+<div class="bg-surface-container-lowest rounded-[16px] p-sm shadow-[0_4px_12px_rgba(18,18,18,0.04)] border border-surface-variant flex flex-col gap-xs">
+<div class="w-8 h-8 rounded-full bg-primary-container/10 flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="mt-xs">
+<div class="font-headline-lg text-headline-lg">1,204</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant mt-1">Tasks Completed</div>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="bg-surface-container-lowest rounded-[16px] p-sm shadow-[0_4px_12px_rgba(18,18,18,0.04)] border border-surface-variant flex flex-col gap-xs">
+<div class="w-8 h-8 rounded-full bg-tertiary-container/20 flex items-center justify-center text-on-tertiary-container">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">view_list</span>
+</div>
+<div class="mt-xs">
+<div class="font-headline-lg text-headline-lg">48</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant mt-1">Sections Completed</div>
+</div>
+</div>
+<!-- Metric 3 -->
+<div class="bg-surface-container-lowest rounded-[16px] p-sm shadow-[0_4px_12px_rgba(18,18,18,0.04)] border border-surface-variant flex flex-col gap-xs">
+<div class="w-8 h-8 rounded-full bg-secondary-container/20 flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">wb_sunny</span>
+</div>
+<div class="mt-xs">
+<div class="font-headline-md text-headline-md">12 Days</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant mt-1">Morning Streak</div>
+</div>
+</div>
+<!-- Metric 4 -->
+<div class="bg-surface-container-lowest rounded-[16px] p-sm shadow-[0_4px_12px_rgba(18,18,18,0.04)] border border-surface-variant flex flex-col gap-xs">
+<div class="w-8 h-8 rounded-full bg-inverse-surface/10 flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">bedtime</span>
+</div>
+<div class="mt-xs">
+<div class="font-headline-md text-headline-md">3 Days</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant mt-1">Evening Streak</div>
+</div>
+</div>
+</section>
+<!-- Perfect Routine Multiplier Log -->
+<section class="flex flex-col gap-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface">Achievements</h3>
+<div class="bg-surface-container-lowest rounded-[16px] shadow-[0_4px_12px_rgba(18,18,18,0.04)] border border-surface-variant divide-y divide-surface-variant">
+<!-- Log Item 1 -->
+<div class="p-sm flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-bold text-on-surface">2x Perfect Section</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Morning Routine • Today</span>
+</div>
+</div>
+<div class="font-label-bold text-label-bold text-primary-container bg-primary-container/10 px-3 py-1 rounded-full">
+                        +100 XP
+                    </div>
+</div>
+<!-- Log Item 2 -->
+<div class="p-sm flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container shadow-sm opacity-70">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-bold text-on-surface">2x Perfect Section</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Evening Routine • Yesterday</span>
+</div>
+</div>
+<div class="font-label-bold text-label-bold text-primary-container bg-primary-container/10 px-3 py-1 rounded-full opacity-70">
+                        +100 XP
+                    </div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="bg-white/95 dark:bg-zinc-950/95 backdrop-blur-lg font-lexend text-[10px] font-bold uppercase tracking-wider fixed bottom-0 w-full z-50 border-t border-zinc-100 dark:border-zinc-800 shadow-[0_-4px_12px_rgba(0,0,0,0.04)] fixed bottom-0 left-0 w-full flex justify-around items-center pt-2 pb-6 px-4 md:hidden">
+<a class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-600 px-4 py-1 hover:text-emerald-400 transition-all active:scale-90 transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)]" href="#">
+<span class="material-symbols-outlined text-2xl mb-1">task_alt</span>
+<span class="font-label-sm text-label-sm">Habits</span>
+</a>
+<a class="flex flex-col items-center justify-center text-emerald-500 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/30 rounded-2xl px-4 py-1 hover:text-emerald-400 transition-all active:scale-90 transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)]" href="#">
+<span class="material-symbols-outlined text-2xl mb-1" style="font-variation-settings: 'FILL' 1;">leaderboard</span>
+<span class="font-label-sm text-label-sm">Stats</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-600 px-4 py-1 hover:text-emerald-400 transition-all active:scale-90 transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)]" href="#">
+<span class="material-symbols-outlined text-2xl mb-1">military_tech</span>
+<span class="font-label-sm text-label-sm">Quests</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-600 px-4 py-1 hover:text-emerald-400 transition-all active:scale-90 transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)]" href="#">
+<span class="material-symbols-outlined text-2xl mb-1">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+</body></html>
