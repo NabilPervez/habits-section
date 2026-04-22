@@ -34,6 +34,9 @@ const ROUTES = {
   // Overlay
   FOCUS_MODE: 'focus_mode',
   SECTION_SUMMARY: 'section_summary',
+  // Edit
+  EDIT_WAKING_WINDOW: 'edit_waking_window',
+  EDIT_DAY_DIVISION: 'edit_day_division',
 };
 
 function App() {
@@ -82,6 +85,10 @@ function App() {
       {route === ROUTES.TUTORIAL_INTRO && <TutorialIntroScreen onNext={() => navigate(ROUTES.TUTORIAL_FOCUS)} onBack={() => navigate(ROUTES.DAY_DIVISION)} onSkip={() => navigate(ROUTES.TIMELINE)} />}
       {route === ROUTES.TUTORIAL_FOCUS && <TutorialFocusMode onComplete={() => navigate(ROUTES.TUTORIAL_COMPLETE)} onClose={() => navigate(ROUTES.TIMELINE)} />}
       {route === ROUTES.TUTORIAL_COMPLETE && <TutorialComplete onNext={() => navigate(ROUTES.TIMELINE)} />}
+
+      {/* Settings Edits */}
+      {route === ROUTES.EDIT_WAKING_WINDOW && <WakingWindowScreen isEditing={true} onNext={() => navigate(ROUTES.SETTINGS)} onBack={() => navigate(ROUTES.SETTINGS)} onSkip={() => navigate(ROUTES.SETTINGS)} />}
+      {route === ROUTES.EDIT_DAY_DIVISION && <DayDivisionScreen isEditing={true} onNext={() => navigate(ROUTES.SETTINGS)} onBack={() => navigate(ROUTES.SETTINGS)} onSkip={() => navigate(ROUTES.SETTINGS)} />}
 
       {/* Main Pages */}
       {route === ROUTES.TIMELINE && <TimelinePage onStartRoutine={startFocusMode} />}
