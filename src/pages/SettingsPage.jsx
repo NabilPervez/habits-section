@@ -117,10 +117,13 @@ export default function SettingsPage({ navigate }) {
           ROUTINE SCHEDULE
         </p>
         <div className="card" style={{ padding: 0, marginBottom: 24, overflow: 'hidden' }}>
-          <div style={{
-            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-            padding: '16px 20px', borderBottom: '1px solid var(--color-border)',
-          }}>
+          <div
+            onClick={() => navigate('edit_waking_window')}
+            style={{
+              display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+              padding: '16px 20px', borderBottom: '1px solid var(--color-border)', cursor: 'pointer'
+            }}
+          >
             <div>
               <p style={{ font: 'var(--text-body-md)', fontWeight: 500 }}>Waking Window</p>
               <p style={{ font: 'var(--text-label-sm)', color: 'var(--color-text-muted)', marginTop: 2 }}>
@@ -129,10 +132,13 @@ export default function SettingsPage({ navigate }) {
             </div>
             <Pencil size={18} color="var(--color-text-muted)" />
           </div>
-          <div style={{
-            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-            padding: '16px 20px',
-          }}>
+          <div
+            onClick={() => navigate('edit_day_division')}
+            style={{
+              display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+              padding: '16px 20px', cursor: 'pointer'
+            }}
+          >
             <div>
               <p style={{ font: 'var(--text-body-md)', fontWeight: 500 }}>Day Division</p>
               <p style={{ font: 'var(--text-label-sm)', color: 'var(--color-text-muted)', marginTop: 2 }}>
@@ -231,24 +237,10 @@ export default function SettingsPage({ navigate }) {
         <div className="card" style={{ padding: 0, marginBottom: 16, overflow: 'hidden' }}>
           <div style={{
             display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-            padding: '16px 20px', borderBottom: '1px solid var(--color-border)',
+            padding: '16px 20px',
           }}>
             <span style={{ font: 'var(--text-body-md)', fontWeight: 500 }}>Version</span>
             <span style={{ font: 'var(--text-label-sm)', color: 'var(--color-text-muted)' }}>1.0.0</span>
-          </div>
-          <div style={{
-            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-            padding: '16px 20px', borderBottom: '1px solid var(--color-border)',
-          }}>
-            <span style={{ font: 'var(--text-body-md)', fontWeight: 500 }}>Privacy Policy</span>
-            <ExternalLink size={16} color="var(--color-text-muted)" />
-          </div>
-          <div style={{
-            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-            padding: '16px 20px',
-          }}>
-            <span style={{ font: 'var(--text-body-md)', fontWeight: 500 }}>Terms of Service</span>
-            <ExternalLink size={16} color="var(--color-text-muted)" />
           </div>
         </div>
 

@@ -1,15 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft } from 'lucide-react';
-import { setSetting } from '../../db';
+import { getSetting, setSetting } from '../../db';
 
-export default function WakingWindowScreen({ onNext, onBack, onSkip }) {
+export default function WakingWindowScreen({ onNext, onBack, onSkip, isEditing }) {
   const [wakeHour, setWakeHour] = useState(7);
   const [wakeMinute, setWakeMinute] = useState(0);
   const [wakeAmPm, setWakeAmPm] = useState('AM');
   const [sleepHour, setSleepHour] = useState(11);
   const [sleepMinute, setSleepMinute] = useState(30);
   const [sleepAmPm, setSleepAmPm] = useState('PM');
+
+  useEffect(() => {
+    async function loadCurrent() {
+      if (isEditing) {
+        const wt = await getSetting('wakeTime');
+        const st = await getSetting('sleepTime');
+
+        const parseTime = (timeStr, setH, setM, setAmPm) => {
+          if (!timeStr) return;
+          const [h, m] = timeStr.split(':').map(Number);
+          setAmPm(h >= 12 ? 'PM' : 'AM');
+          setH(h % 12 || 12);
+          setM(m);
+        };
+
+        if (wt) parseTime(wt, setWakeHour, setWakeMinute, setWakeAmPm);
+        if (st) parseTime(st, setSleepHour, setSleepMinute, setSleepAmPm);
+      }
+    }
+    loadCurrent();
+  }, [isEditing]);
 
   const formatTime = (h, m, ampm) => {
     const h24 = ampm === 'PM' && h !== 12 ? h + 12 : (ampm === 'AM' && h === 12 ? 0 : h);
@@ -90,16 +111,18 @@ export default function WakingWindowScreen({ onNext, onBack, onSkip }) {
       {/* Top bar */}
       <div className="onboard-topbar">
         <button className="onboard-topbar__back" onClick={onBack}><ChevronLeft size={24} /></button>
-        <span className="onboard-topbar__brand">HABITFLOW</span>
-        <button className="onboard-topbar__skip" onClick={onSkip}>Skip</button>
+        <span className="onboard-topbar__brand">{isEditing ? 'EDIT WAKING WINDOW' : 'HABITFLOW'}</span>
+        {!isEditing && <button className="onboard-topbar__skip" onClick={onSkip}>Skip</button>}
       </div>
 
       {/* Progress bar */}
-      <div style={{ padding: '0 var(--space-gutter)' }}>
-        <div className="progress-bar">
-          <div className="progress-bar__fill" style={{ width: '25%' }} />
+      {!isEditing && (
+        <div style={{ padding: '0 var(--space-gutter)' }}>
+          <div className="progress-bar">
+            <div className="progress-bar__fill" style={{ width: '25%' }} />
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Content */}
       <div style={{ padding: 'var(--space-2xl) var(--space-gutter)', flex: 1 }}>
@@ -127,7 +150,7 @@ export default function WakingWindowScreen({ onNext, onBack, onSkip }) {
       {/* CTA */}
       <div style={{ padding: 'var(--space-lg) var(--space-gutter)', paddingBottom: 'var(--space-2xl)' }}>
         <motion.button whileTap={{ scale: 0.95 }} className="btn-primary" onClick={handleNext} id="btn-waking-next">
-          Next
+          {isEditing ? 'Save' : 'Next'}
         </motion.button>
       </div>
     </motion.div>

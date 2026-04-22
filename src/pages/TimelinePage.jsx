@@ -29,14 +29,9 @@ export default function TimelinePage({ onStartRoutine }) {
   const now = new Date();
   const currentTimeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
 
-  const getActiveSection = () => {
-    for (const s of sections) {
-      if (currentTimeStr >= s.startTime && currentTimeStr < s.endTime) return s.id;
-    }
-    return sections[0]?.id;
+  const isSectionActive = (section) => {
+    return currentTimeStr >= section.startTime;
   };
-
-  const activeSectionId = getActiveSection();
 
   const isSectionCompleted = (sectionId) => {
     const tasks = tasksBySection[sectionId] || [];
@@ -122,7 +117,7 @@ export default function TimelinePage({ onStartRoutine }) {
         }} />
 
         {sections.map((section, idx) => {
-          const isActive = section.id === activeSectionId && !isSectionCompleted(section.id);
+          const isActive = isSectionActive(section) && !isSectionCompleted(section.id);
           const isDone = isSectionCompleted(section.id);
           const tasks = tasksBySection[section.id] || [];
 

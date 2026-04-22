@@ -1,13 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, Layers, Sunrise, MapPin } from 'lucide-react';
-import { setSetting } from '../../db';
+import { getSetting, setSetting } from '../../db';
 import { seedStandardSections, seedIslamicSections } from '../../data/seedData';
 import { fullGeoFlow, buildIslamicSections } from '../../utils/geo';
 
-export default function DayDivisionScreen({ onNext, onBack, onSkip }) {
+export default function DayDivisionScreen({ onNext, onBack, onSkip, isEditing }) {
   const [selected, setSelected] = useState('standard');
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    async function loadCurrent() {
+      if (isEditing) {
+        const dd = await getSetting('dayDivision');
+        if (dd) setSelected(dd);
+      }
+    }
+    loadCurrent();
+  }, [isEditing]);
 
   const handleContinue = async () => {
     setLoading(true);
@@ -41,16 +51,18 @@ export default function DayDivisionScreen({ onNext, onBack, onSkip }) {
       {/* Top bar */}
       <div className="onboard-topbar">
         <button className="onboard-topbar__back" onClick={onBack} disabled={loading}><ChevronLeft size={24} /></button>
-        <span className="onboard-topbar__brand">HABITFLOW</span>
-        <button className="onboard-topbar__skip" onClick={onSkip} disabled={loading}>Skip</button>
+        <span className="onboard-topbar__brand">{isEditing ? 'EDIT DAY DIVISION' : 'HABITFLOW'}</span>
+        {!isEditing && <button className="onboard-topbar__skip" onClick={onSkip} disabled={loading}>Skip</button>}
       </div>
 
       {/* Progress */}
-      <div style={{ padding: '0 var(--space-gutter)' }}>
-        <div className="progress-bar">
-          <div className="progress-bar__fill" style={{ width: '50%' }} />
+      {!isEditing && (
+        <div style={{ padding: '0 var(--space-gutter)' }}>
+          <div className="progress-bar">
+            <div className="progress-bar__fill" style={{ width: '50%' }} />
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Content */}
       <div style={{ padding: 'var(--space-2xl) var(--space-gutter)', flex: 1 }}>
@@ -150,7 +162,7 @@ export default function DayDivisionScreen({ onNext, onBack, onSkip }) {
       {/* CTA */}
       <div style={{ padding: 'var(--space-lg) var(--space-gutter)', paddingBottom: 'var(--space-2xl)' }}>
         <motion.button whileTap={{ scale: 0.95 }} className="btn-primary" onClick={handleContinue} disabled={loading} id="btn-division-continue">
-          {loading ? 'Setting up...' : 'Continue'} <ChevronLeft size={18} style={{ transform: 'rotate(180deg)' }} />
+          {loading ? 'Setting up...' : (isEditing ? 'Save' : 'Continue')} {!isEditing && <ChevronLeft size={18} style={{ transform: 'rotate(180deg)' }} />}
         </motion.button>
       </div>
     </motion.div>
