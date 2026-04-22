@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Pencil, RefreshCw, Upload, ExternalLink } from 'lucide-react';
-import { getSetting, setSetting } from '../db';
+import { ChevronLeft, ChevronRight, Pencil, RefreshCw, Upload, Download, ExternalLink } from 'lucide-react';
+import { getSetting, setSetting, exportData, importData } from '../db';
 import { fullGeoFlow } from '../utils/geo';
 
 export default function SettingsPage({ navigate }) {
@@ -50,6 +50,39 @@ export default function SettingsPage({ navigate }) {
       console.warn(e);
     }
     setRefreshingGeo(false);
+  };
+
+  const handleExportData = async () => {
+    try {
+      const json = await exportData();
+      const blob = new Blob([json], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `habitflow-backup-${new Date().toISOString().split('T')[0]}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      console.error('Export failed', e);
+      alert('Failed to export data');
+    }
+  };
+
+  const handleImportData = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = async (event) => {
+      try {
+        await importData(event.target.result);
+        alert('Data imported successfully! The app will now reload.');
+        window.location.reload();
+      } catch (err) {
+        console.error('Import failed', err);
+        alert('Failed to import data. Please ensure it is a valid backup file.');
+      }
+    };
+    reader.readAsText(file);
   };
 
   const formatTime12 = (time) => {
@@ -160,15 +193,34 @@ export default function SettingsPage({ navigate }) {
               <RefreshCw size={18} color={geo ? 'var(--color-primary)' : 'var(--color-text-muted)'} className={refreshingGeo ? 'spinning' : ''} />
             </button>
           </div>
-          <div style={{ padding: '16px 20px' }}>
-            <button style={{
-              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-              width: '100%', padding: '12px',
-              background: 'var(--color-surface)', borderRadius: 12,
-              font: 'var(--text-label-bold)', color: 'var(--color-text-secondary)',
-            }}>
-              <Upload size={16} /> Backup my data
+          <div style={{ padding: '16px 20px', display: 'flex', gap: 12 }}>
+            <button
+              onClick={handleExportData}
+              style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                flex: 1, padding: '12px',
+                background: 'var(--color-surface)', borderRadius: 12,
+                font: 'var(--text-label-bold)', color: 'var(--color-text-secondary)',
+              }}
+            >
+              <Download size={16} /> Export
             </button>
+            <label
+              style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                flex: 1, padding: '12px', cursor: 'pointer',
+                background: 'var(--color-surface)', borderRadius: 12,
+                font: 'var(--text-label-bold)', color: 'var(--color-text-secondary)',
+              }}
+            >
+              <Upload size={16} /> Import
+              <input
+                type="file"
+                accept=".json"
+                style={{ display: 'none' }}
+                onChange={handleImportData}
+              />
+            </label>
           </div>
         </div>
 
