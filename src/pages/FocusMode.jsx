@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, MoreVertical, CheckCircle2, ChevronRight } from 'lucide-react';
 import confetti from 'canvas-confetti';
-import { getTasksForSection, getSections, completeTask, getTodayHistory } from '../db';
+import { getTasksForSection, getSections, completeTask, getTodayHistory, getSetting } from '../db';
 import Icon from '../components/Icon';
+import { playSuccessSound, playXPSound, playSectionCompleteSound, playSkipSound } from '../utils/sounds';
 
 export default function FocusMode({ sectionId, onComplete, onClose }) {
   const [tasks, setTasks] = useState([]);
@@ -12,9 +13,13 @@ export default function FocusMode({ sectionId, onComplete, onClose }) {
   const [showCelebration, setShowCelebration] = useState(false);
   const [completedTasks, setCompletedTasks] = useState([]);
   const [skippedCount, setSkippedCount] = useState(0);
+  const [soundEnabled, setSoundEnabled] = useState(true);
 
   useEffect(() => {
     async function load() {
+      const soundsOn = await getSetting('sounds');
+      if (soundsOn !== null) setSoundEnabled(soundsOn);
+
       const sections = await getSections();
       const sec = sections.find(s => s.id === sectionId);
       setSection(sec);
@@ -32,26 +37,33 @@ export default function FocusMode({ sectionId, onComplete, onClose }) {
   const totalSteps = tasks.length;
   const progress = ((currentIdx + (showCelebration ? 1 : 0)) / totalSteps) * 100;
 
-  const triggerHaptic = () => {
-    if (navigator.vibrate) navigator.vibrate(50);
+  const triggerHaptic = async () => {
+    const hapticsOn = await getSetting('haptics') !== false;
+    if (hapticsOn && navigator.vibrate) navigator.vibrate(50);
   };
 
   const handleDone = async () => {
     if (!task) return;
     triggerHaptic();
+    if (soundEnabled) playSuccessSound();
+
     confetti({
       particleCount: 80,
       spread: 60,
       origin: { y: 0.7 },
       colors: ['#1db954', '#ffd700', '#121212'],
     });
+
     const xp = await completeTask(task.id, sectionId, false);
     setCompletedTasks(prev => [...prev, { ...task, xpEarned: xp }]);
     setShowCelebration(true);
+
+    if (soundEnabled) setTimeout(playXPSound, 300);
   };
 
   const handleSkip = async () => {
     if (!task) return;
+    if (soundEnabled) playSkipSound();
     await completeTask(task.id, sectionId, true);
     setSkippedCount(prev => prev + 1);
     advanceOrFinish();
@@ -60,6 +72,7 @@ export default function FocusMode({ sectionId, onComplete, onClose }) {
   const advanceOrFinish = () => {
     setShowCelebration(false);
     if (currentIdx + 1 >= totalSteps) {
+      if (soundEnabled) setTimeout(playSectionCompleteSound, 200);
       // Section complete — compute summary
       const totalXP = completedTasks.reduce((s, t) => s + (t.xpEarned || 0), 0);
       const isPerfect = skippedCount === 0;

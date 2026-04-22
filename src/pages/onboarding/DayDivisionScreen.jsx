@@ -2,16 +2,33 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, Layers, Sunrise, MapPin } from 'lucide-react';
 import { setSetting } from '../../db';
-import { seedStandardSections, seedHistoricalData } from '../../data/seedData';
+import { seedStandardSections, seedIslamicSections, seedHistoricalData } from '../../data/seedData';
+import { fullGeoFlow, buildIslamicSections } from '../../utils/geo';
 
 export default function DayDivisionScreen({ onNext, onBack, onSkip }) {
   const [selected, setSelected] = useState('standard');
+  const [loading, setLoading] = useState(false);
 
   const handleContinue = async () => {
+    setLoading(true);
     await setSetting('dayDivision', selected);
-    // Always seed standard sections for now (Islamic preset would need API integration)
-    await seedStandardSections();
+
+    if (selected === 'islamic') {
+      try {
+        const { prayerTimes } = await fullGeoFlow();
+        const sections = buildIslamicSections(prayerTimes);
+        await seedIslamicSections(sections);
+      } catch (e) {
+        // Fallback to standard if geo fails entirely
+        await seedStandardSections();
+      }
+    } else {
+      await seedStandardSections();
+      await setSetting('city', 'Dallas, TX'); // Default
+    }
+
     await seedHistoricalData();
+    setLoading(false);
     onNext();
   };
 
@@ -24,9 +41,9 @@ export default function DayDivisionScreen({ onNext, onBack, onSkip }) {
     >
       {/* Top bar */}
       <div className="onboard-topbar">
-        <button className="onboard-topbar__back" onClick={onBack}><ChevronLeft size={24} /></button>
+        <button className="onboard-topbar__back" onClick={onBack} disabled={loading}><ChevronLeft size={24} /></button>
         <span className="onboard-topbar__brand">HABITFLOW</span>
-        <button className="onboard-topbar__skip" onClick={onSkip}>Skip</button>
+        <button className="onboard-topbar__skip" onClick={onSkip} disabled={loading}>Skip</button>
       </div>
 
       {/* Progress */}
@@ -56,6 +73,7 @@ export default function DayDivisionScreen({ onNext, onBack, onSkip }) {
             gap: 16,
             cursor: 'pointer',
           }}
+          disabled={loading}
           id="option-standard"
         >
           <div style={{
@@ -88,6 +106,7 @@ export default function DayDivisionScreen({ onNext, onBack, onSkip }) {
             textAlign: 'left',
             cursor: 'pointer',
           }}
+          disabled={loading}
           id="option-islamic"
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: selected === 'islamic' ? 16 : 0 }}>
@@ -122,14 +141,8 @@ export default function DayDivisionScreen({ onNext, onBack, onSkip }) {
             >
               <MapPin size={18} color="var(--color-text-muted)" />
               <span style={{ font: 'var(--text-body-md)', color: 'var(--color-text-secondary)', fontSize: 13, flex: 1 }}>
-                Requires location access to calculate accurate prayer times.
+                Will request location access to calculate accurate daily prayer times.
               </span>
-              <button style={{
-                padding: '8px 16px', background: 'var(--color-text-primary)', color: 'white',
-                borderRadius: 8, font: 'var(--text-label-bold)', fontSize: 12,
-              }}>
-                Allow Access
-              </button>
             </motion.div>
           )}
         </button>
@@ -137,8 +150,8 @@ export default function DayDivisionScreen({ onNext, onBack, onSkip }) {
 
       {/* CTA */}
       <div style={{ padding: 'var(--space-lg) var(--space-gutter)', paddingBottom: 'var(--space-2xl)' }}>
-        <motion.button whileTap={{ scale: 0.95 }} className="btn-primary" onClick={handleContinue} id="btn-division-continue">
-          Continue <ChevronLeft size={18} style={{ transform: 'rotate(180deg)' }} />
+        <motion.button whileTap={{ scale: 0.95 }} className="btn-primary" onClick={handleContinue} disabled={loading} id="btn-division-continue">
+          {loading ? 'Setting up...' : 'Continue'} <ChevronLeft size={18} style={{ transform: 'rotate(180deg)' }} />
         </motion.button>
       </div>
     </motion.div>

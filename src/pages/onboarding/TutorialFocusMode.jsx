@@ -4,6 +4,7 @@ import { X, MoreVertical, CheckCircle2, ChevronRight } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import Icon from '../../components/Icon';
 import { TUTORIAL_TASKS } from '../../data/seedData';
+import { playSuccessSound, playXPSound } from '../../utils/sounds';
 
 export default function TutorialFocusMode({ onComplete, onClose }) {
   const [currentStep, setCurrentStep] = useState(0);
@@ -20,6 +21,7 @@ export default function TutorialFocusMode({ onComplete, onClose }) {
 
   const handleDone = () => {
     triggerHaptic();
+    playSuccessSound();
     confetti({
       particleCount: 80,
       spread: 60,
@@ -28,6 +30,7 @@ export default function TutorialFocusMode({ onComplete, onClose }) {
     });
     setTotalXP(prev => prev + 10);
     setShowCelebration(true);
+    setTimeout(playXPSound, 300);
   };
 
   const handleNext = () => {

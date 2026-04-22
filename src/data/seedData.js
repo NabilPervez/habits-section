@@ -52,15 +52,59 @@ export const DEFAULT_TASKS = {
   ],
 };
 
+// Islamic section tasks — habits clustered around each salah
+export const ISLAMIC_TASKS = {
+  'Fajr': [
+    { title: 'Pray Fajr', icon: 'sunrise', isMandatory: true, durationMinutes: 10, order: 0 },
+    { title: 'Morning Adhkar', icon: 'book-open', isMandatory: true, durationMinutes: 10, order: 1 },
+    { title: 'Quran Recitation', icon: 'book-open', isMandatory: true, durationMinutes: 15, order: 2 },
+    { title: 'Hydrate', icon: 'droplets', isMandatory: false, durationMinutes: 2, order: 3 },
+  ],
+  'Dhuhr': [
+    { title: 'Pray Dhuhr', icon: 'sun', isMandatory: true, durationMinutes: 10, order: 0 },
+    { title: 'Dhikr', icon: 'heart', isMandatory: false, durationMinutes: 5, order: 1 },
+    { title: 'Healthy Lunch', icon: 'utensils', isMandatory: false, durationMinutes: 30, order: 2 },
+  ],
+  'Asr': [
+    { title: 'Pray Asr', icon: 'cloud-sun', isMandatory: true, durationMinutes: 10, order: 0 },
+    { title: 'Evening Adhkar', icon: 'book-open', isMandatory: true, durationMinutes: 10, order: 1 },
+    { title: 'Exercise', icon: 'dumbbell', isMandatory: false, durationMinutes: 30, order: 2 },
+  ],
+  'Maghrib': [
+    { title: 'Pray Maghrib', icon: 'sunset', isMandatory: true, durationMinutes: 10, order: 0 },
+    { title: 'Family Time', icon: 'heart', isMandatory: false, durationMinutes: 30, order: 1 },
+    { title: 'Quran Study', icon: 'book-open', isMandatory: false, durationMinutes: 20, order: 2 },
+  ],
+  'Isha': [
+    { title: 'Pray Isha', icon: 'moon', isMandatory: true, durationMinutes: 10, order: 0 },
+    { title: 'Night Adhkar', icon: 'book-open', isMandatory: true, durationMinutes: 10, order: 1 },
+    { title: 'Reflect & Journal', icon: 'pencil', isMandatory: false, durationMinutes: 10, order: 2 },
+    { title: 'Prepare for Sleep', icon: 'bed', isMandatory: false, durationMinutes: 5, order: 3 },
+  ],
+};
+
 // Seed the database after onboarding day division selection
 export async function seedStandardSections() {
-  // Clear existing data
   await db.sections.clear();
   await db.tasks.clear();
 
   for (const section of DEFAULT_SECTIONS) {
     const sectionId = await db.sections.add({ ...section });
     const tasks = DEFAULT_TASKS[section.name] || [];
+    for (const task of tasks) {
+      await db.tasks.add({ ...task, sectionId });
+    }
+  }
+}
+
+// Seed Islamic sections from prayer times
+export async function seedIslamicSections(islamicSections) {
+  await db.sections.clear();
+  await db.tasks.clear();
+
+  for (const section of islamicSections) {
+    const sectionId = await db.sections.add({ ...section });
+    const tasks = ISLAMIC_TASKS[section.name] || [];
     for (const task of tasks) {
       await db.tasks.add({ ...task, sectionId });
     }
@@ -97,14 +141,36 @@ export async function seedHistoricalData() {
     }
   }
 
-  // Add some achievements
+  // Add some earned achievements
   if (sections.length > 0) {
     await db.achievements.bulkAdd([
-      { type: 'perfect_section', sectionId: sections[0].id, date: new Date(today.getTime() - 86400000).toISOString().split('T')[0], xpBonus: 100 },
-      { type: 'perfect_section', sectionId: sections[3]?.id || sections[0].id, date: new Date(today.getTime() - 172800000).toISOString().split('T')[0], xpBonus: 100 },
+      { type: 'perfect_section', sectionId: sections[0].id, date: new Date(today.getTime() - 86400000).toISOString().split('T')[0], xpBonus: 100, unlocked: true },
+      { type: 'perfect_section', sectionId: sections[3]?.id || sections[0].id, date: new Date(today.getTime() - 172800000).toISOString().split('T')[0], xpBonus: 100, unlocked: true },
+      { type: 'first_routine', sectionId: sections[0].id, date: new Date(today.getTime() - 86400000 * 14).toISOString().split('T')[0], xpBonus: 50, unlocked: true },
     ]);
   }
 }
+
+// All possible achievements — unlocked ones have a date, locked ones are grayed out
+export const ALL_ACHIEVEMENTS = [
+  { id: 'first_routine', title: 'First Steps', description: 'Complete your first routine', icon: 'zap', xpBonus: 50 },
+  { id: 'perfect_section', title: 'Perfect Section', description: 'Complete all tasks in a section without skipping', icon: 'star', xpBonus: 100 },
+  { id: 'streak_3', title: '3-Day Streak', description: 'Use HabitFlow 3 days in a row', icon: 'flame', xpBonus: 75 },
+  { id: 'streak_7', title: 'Week Warrior', description: 'Use HabitFlow 7 days in a row', icon: 'flame', xpBonus: 150 },
+  { id: 'streak_14', title: 'Fortnight Force', description: '14-day streak achieved', icon: 'flame', xpBonus: 300 },
+  { id: 'streak_30', title: 'Monthly Master', description: '30-day streak — unstoppable!', icon: 'flame', xpBonus: 500 },
+  { id: 'tasks_50', title: 'Half Century', description: 'Complete 50 total tasks', icon: 'check-circle', xpBonus: 100 },
+  { id: 'tasks_100', title: 'Centurion', description: 'Complete 100 total tasks', icon: 'check-circle', xpBonus: 200 },
+  { id: 'tasks_500', title: 'Habit Machine', description: 'Complete 500 total tasks', icon: 'check-circle', xpBonus: 500 },
+  { id: 'early_bird', title: 'Early Bird', description: 'Complete a morning routine before 7:00 AM', icon: 'sunrise', xpBonus: 75 },
+  { id: 'night_owl', title: 'Night Owl', description: 'Complete an evening routine after 9:00 PM', icon: 'moon', xpBonus: 75 },
+  { id: 'builder_pro', title: 'Builder Pro', description: 'Create 10 custom habits', icon: 'pencil', xpBonus: 100 },
+  { id: 'section_master', title: 'Section Master', description: 'Complete 5 perfect sections', icon: 'award', xpBonus: 250 },
+  { id: 'level_5', title: 'Rising Star', description: 'Reach Level 5', icon: 'star', xpBonus: 200 },
+  { id: 'level_10', title: 'Veteran', description: 'Reach Level 10', icon: 'star', xpBonus: 400 },
+  { id: 'xp_1000', title: 'XP Collector', description: 'Earn 1,000 total XP', icon: 'zap', xpBonus: 100 },
+  { id: 'xp_5000', title: 'XP Hoarder', description: 'Earn 5,000 total XP', icon: 'zap', xpBonus: 300 },
+];
 
 // Tutorial tasks (used in onboarding flow)
 export const TUTORIAL_TASKS = [

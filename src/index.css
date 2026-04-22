@@ -405,3 +405,4 @@ img { max-width: 100%; display: block; }
     transition-duration: 0.01ms !important;
   }
 }
+.spinning { animation: spin 1s linear infinite; } @keyframes spin { 100% { transform: rotate(360deg); } }
