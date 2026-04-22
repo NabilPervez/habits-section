@@ -97,6 +97,29 @@ export async function seedStandardSections() {
   }
 }
 
+// Seed Custom sections
+export async function seedCustomSections(customSections) {
+  await db.sections.clear();
+  await db.tasks.clear();
+
+  let isFirst = true;
+  for (const section of customSections) {
+    const sectionId = await db.sections.add({ ...section });
+
+    // Add a minimal starter routine to the very first custom section
+    if (isFirst) {
+      const starterTasks = [
+        { title: 'Hydrate', icon: 'droplets', isMandatory: true, durationMinutes: 2, order: 0 },
+        { title: 'Review Goals', icon: 'pencil', isMandatory: false, durationMinutes: 5, order: 1 }
+      ];
+      for (const task of starterTasks) {
+        await db.tasks.add({ ...task, sectionId });
+      }
+      isFirst = false;
+    }
+  }
+}
+
 // Seed Islamic sections from prayer times
 export async function seedIslamicSections(islamicSections) {
   await db.sections.clear();
