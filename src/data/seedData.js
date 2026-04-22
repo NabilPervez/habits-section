@@ -111,46 +111,6 @@ export async function seedIslamicSections(islamicSections) {
   }
 }
 
-// Seed with some historical data so the app looks populated
-export async function seedHistoricalData() {
-  const sections = await db.sections.toArray();
-  const today = new Date();
-
-  // Simulate last 15 days of history
-  for (let daysAgo = 1; daysAgo <= 15; daysAgo++) {
-    const date = new Date(today);
-    date.setDate(date.getDate() - daysAgo);
-    const dateStr = date.toISOString().split('T')[0];
-
-    for (const section of sections) {
-      const tasks = await db.tasks.where('sectionId').equals(section.id).toArray();
-      for (const task of tasks) {
-        // 85% chance of completing each task
-        const completed = Math.random() < 0.85;
-        if (completed) {
-          await db.history.add({
-            date: dateStr,
-            taskId: task.id,
-            sectionId: section.id,
-            completedAt: new Date(date.getTime() + Math.random() * 86400000).toISOString(),
-            skipped: false,
-            xpEarned: 10,
-          });
-        }
-      }
-    }
-  }
-
-  // Add some earned achievements
-  if (sections.length > 0) {
-    await db.achievements.bulkAdd([
-      { type: 'perfect_section', sectionId: sections[0].id, date: new Date(today.getTime() - 86400000).toISOString().split('T')[0], xpBonus: 100, unlocked: true },
-      { type: 'perfect_section', sectionId: sections[3]?.id || sections[0].id, date: new Date(today.getTime() - 172800000).toISOString().split('T')[0], xpBonus: 100, unlocked: true },
-      { type: 'first_routine', sectionId: sections[0].id, date: new Date(today.getTime() - 86400000 * 14).toISOString().split('T')[0], xpBonus: 50, unlocked: true },
-    ]);
-  }
-}
-
 // All possible achievements — unlocked ones have a date, locked ones are grayed out
 export const ALL_ACHIEVEMENTS = [
   { id: 'first_routine', title: 'First Steps', description: 'Complete your first routine', icon: 'zap', xpBonus: 50 },

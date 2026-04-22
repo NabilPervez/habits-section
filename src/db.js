@@ -102,6 +102,38 @@ export function getXPForCurrentLevel(level) {
   return LEVEL_THRESHOLDS[Math.max(0, level - 1)];
 }
 
+// --- Export/Import ---
+export async function exportData() {
+  const data = {
+    settings: await db.settings.toArray(),
+    sections: await db.sections.toArray(),
+    tasks: await db.tasks.toArray(),
+    history: await db.history.toArray(),
+    achievements: await db.achievements.toArray(),
+  };
+  return JSON.stringify(data);
+}
+
+export async function importData(jsonData) {
+  const data = JSON.parse(jsonData);
+
+  await db.transaction('rw', db.settings, db.sections, db.tasks, db.history, db.achievements, async () => {
+    // Clear existing data
+    await db.settings.clear();
+    await db.sections.clear();
+    await db.tasks.clear();
+    await db.history.clear();
+    await db.achievements.clear();
+
+    // Import new data
+    if (data.settings) await db.settings.bulkAdd(data.settings);
+    if (data.sections) await db.sections.bulkAdd(data.sections);
+    if (data.tasks) await db.tasks.bulkAdd(data.tasks);
+    if (data.history) await db.history.bulkAdd(data.history);
+    if (data.achievements) await db.achievements.bulkAdd(data.achievements);
+  });
+}
+
 // --- Stats calculations ---
 export async function calculateStats() {
   const allHistory = await db.history.toArray();

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, Layers, Sunrise, MapPin } from 'lucide-react';
 import { setSetting } from '../../db';
-import { seedStandardSections, seedIslamicSections, seedHistoricalData } from '../../data/seedData';
+import { seedStandardSections, seedIslamicSections } from '../../data/seedData';
 import { fullGeoFlow, buildIslamicSections } from '../../utils/geo';
 
 export default function DayDivisionScreen({ onNext, onBack, onSkip }) {
@@ -27,7 +27,6 @@ export default function DayDivisionScreen({ onNext, onBack, onSkip }) {
       await setSetting('city', 'Dallas, TX'); // Default
     }
 
-    await seedHistoricalData();
     setLoading(false);
     onNext();
   };
