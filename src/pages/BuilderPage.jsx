@@ -232,23 +232,6 @@ export default function BuilderPage() {
         </div>
       </DragDropContext>
 
-      {/* Floating add button */}
-      <motion.button
-        whileTap={{ scale: 0.9 }}
-        onClick={() => openNewHabit(sections[0]?.id)}
-        style={{
-          position: 'fixed', bottom: 90, right: 'calc(50% - 220px)',
-          width: 56, height: 56, borderRadius: 16,
-          background: 'var(--color-primary)', color: 'white',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          boxShadow: 'var(--shadow-elevated)',
-          zIndex: 50,
-        }}
-        id="btn-add-habit-fab"
-      >
-        <Plus size={28} />
-      </motion.button>
-
       {/* Bottom Sheet: New Habit */}
       <AnimatePresence>
         {showSheet && (
