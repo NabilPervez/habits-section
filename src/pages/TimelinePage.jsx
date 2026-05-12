@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Flame, Play } from 'lucide-react';
+import { Flame, Play, ExternalLink } from 'lucide-react';
 import { getSections, getTasksForSection, getTodayHistory, calculateStats } from '../db';
 import Icon from '../components/Icon';
 
@@ -185,13 +185,26 @@ export default function TimelinePage({ onStartRoutine }) {
                         }}>
                           {isTaskDone(task.id) && <span style={{ color: 'white', fontSize: 12 }}>✓</span>}
                         </div>
-                        <span style={{
-                          font: 'var(--text-body-md)',
-                          textDecoration: isTaskDone(task.id) ? 'line-through' : 'none',
-                          color: isTaskDone(task.id) ? 'var(--color-text-muted)' : 'var(--color-text-primary)',
-                        }}>
-                          {task.title}
-                        </span>
+                        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                          <span style={{
+                            font: 'var(--text-body-md)',
+                            textDecoration: isTaskDone(task.id) ? 'line-through' : 'none',
+                            color: isTaskDone(task.id) ? 'var(--color-text-muted)' : 'var(--color-text-primary)',
+                          }}>
+                            {task.title}
+                          </span>
+                          {task.link && (
+                            <a
+                              href={task.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              style={{ color: 'var(--color-primary)', display: 'flex', alignItems: 'center' }}
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              <ExternalLink size={16} />
+                            </a>
+                          )}
+                        </div>
                       </div>
                     ))}
                   </div>
