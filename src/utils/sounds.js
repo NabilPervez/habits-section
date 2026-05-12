@@ -105,3 +105,29 @@ export function playSkipSound() {
     osc.stop(now + 0.2);
   } catch (e) {}
 }
+
+export function playAlarmSound() {
+  try {
+    const ctx = getAudioContext();
+    const now = ctx.currentTime;
+
+    // Create oscillator
+    const osc = ctx.createOscillator();
+    const gainNode = ctx.createGain();
+
+    osc.type = 'square';
+    osc.frequency.setValueAtTime(800, now);
+    osc.frequency.setValueAtTime(1200, now + 0.2);
+    osc.frequency.setValueAtTime(800, now + 0.4);
+    osc.frequency.setValueAtTime(1200, now + 0.6);
+
+    gainNode.gain.setValueAtTime(0.5, now);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.8);
+
+    osc.connect(gainNode);
+    gainNode.connect(ctx.destination);
+
+    osc.start(now);
+    osc.stop(now + 0.8);
+  } catch(e) {}
+}

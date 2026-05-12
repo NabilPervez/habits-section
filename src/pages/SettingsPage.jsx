@@ -3,10 +3,12 @@ import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Pencil, RefreshCw, Upload, Download, ExternalLink } from 'lucide-react';
 import { getSetting, setSetting, exportData, importData } from '../db';
 import { fullGeoFlow } from '../utils/geo';
+import { requestNotificationPermission } from '../utils/notifications';
 
 export default function SettingsPage({ navigate }) {
   const [haptics, setHaptics] = useState(true);
   const [sounds, setSounds] = useState(true);
+  const [notificationsEnabled, setNotificationsEnabled] = useState(false);
   const [geo, setGeo] = useState(true);
   const [wakeTime, setWakeTime] = useState('06:00');
   const [sleepTime, setSleepTime] = useState('22:00');
@@ -25,6 +27,7 @@ export default function SettingsPage({ navigate }) {
       const c = await getSetting('city');
       if (h !== null) setHaptics(h);
       if (s !== null) setSounds(s);
+      setNotificationsEnabled(('Notification' in window) && Notification.permission === 'granted');
       if (g !== null) setGeo(g);
       if (w) setWakeTime(w);
       if (sl) setSleepTime(sl);
@@ -33,6 +36,20 @@ export default function SettingsPage({ navigate }) {
     }
     load();
   }, []);
+
+
+  const handleToggleNotifications = async () => {
+    if (!notificationsEnabled) {
+      const granted = await requestNotificationPermission();
+      setNotificationsEnabled(granted);
+    } else {
+      // You can't un-grant permission via JS, so just show an alert or let OS handle it.
+      // But we can store a setting if we want to mute them.
+      // For now, let's just toggle a local setting.
+      alert("To disable notifications completely, please change your browser settings.");
+      setNotificationsEnabled(false); // They can manually toggle it off in our UI if they want to mute
+    }
+  };
 
   const toggleSetting = async (key, current, setter) => {
     const val = !current;
@@ -160,6 +177,13 @@ export default function SettingsPage({ navigate }) {
           }}>
             <span style={{ font: 'var(--text-body-md)', fontWeight: 500 }}>Haptic Feedback</span>
             <Toggle active={haptics} onToggle={() => toggleSetting('haptics', haptics, setHaptics)} />
+          </div>
+          <div style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+            padding: '16px 20px', borderBottom: '1px solid var(--color-border)',
+          }}>
+            <span style={{ font: 'var(--text-body-md)', fontWeight: 500 }}>Notifications</span>
+            <Toggle active={notificationsEnabled} onToggle={handleToggleNotifications} />
           </div>
           <div style={{
             display: 'flex', alignItems: 'center', justifyContent: 'space-between',

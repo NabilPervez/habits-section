@@ -1,3 +1,4 @@
+import { setupAlarms } from "./utils/alarms";
 import React, { useState, useEffect } from 'react';
 import { isOnboardingComplete } from './db';
 
@@ -17,6 +18,8 @@ import SectionSummary from './pages/SectionSummary';
 
 // Components
 import BottomNav from './components/BottomNav';
+import AchievementToast from './components/AchievementToast';
+import { checkAchievements } from './utils/achievements';
 
 const ROUTES = {
   // Onboarding
@@ -44,9 +47,34 @@ function App() {
   const [focusSectionId, setFocusSectionId] = useState(null);
   const [summaryData, setSummaryData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [unlockedAchievements, setUnlockedAchievements] = useState([]);
+  const [currentToast, setCurrentToast] = useState(null);
+
+  useEffect(() => {
+    if (unlockedAchievements.length > 0 && !currentToast) {
+      setCurrentToast(unlockedAchievements[0]);
+    }
+  }, [unlockedAchievements, currentToast]);
+
+  const handleCloseToast = () => {
+    setUnlockedAchievements(prev => prev.slice(1));
+    setCurrentToast(null);
+  };
+
+  // Check achievements whenever route changes to TIMELINE (e.g. after a routine)
+  useEffect(() => {
+    if (route === ROUTES.TIMELINE) {
+      checkAchievements().then(newAchs => {
+        if (newAchs.length > 0) {
+          setUnlockedAchievements(prev => [...prev, ...newAchs]);
+        }
+      });
+    }
+  }, [route]);
 
   useEffect(() => {
     async function init() {
+      setupAlarms();
       const done = await isOnboardingComplete();
       setRoute(done ? ROUTES.TIMELINE : ROUTES.WELCOME);
       setLoading(false);
@@ -78,6 +106,7 @@ function App() {
 
   return (
     <div className="app-container">
+      <AchievementToast achievement={currentToast} onClose={handleCloseToast} />
       {/* Onboarding */}
       {route === ROUTES.WELCOME && <WelcomeScreen onNext={() => navigate(ROUTES.WAKING_WINDOW)} />}
       {route === ROUTES.WAKING_WINDOW && <WakingWindowScreen onNext={() => navigate(ROUTES.DAY_DIVISION)} onBack={() => navigate(ROUTES.WELCOME)} onSkip={() => navigate(ROUTES.TIMELINE)} />}
