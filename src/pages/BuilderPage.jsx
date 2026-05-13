@@ -18,6 +18,7 @@ export default function BuilderPage() {
   const [habitIcon, setHabitIcon] = useState('dumbbell');
   const [habitPriority, setHabitPriority] = useState('mandatory');
   const [habitDuration, setHabitDuration] = useState(15);
+  const [habitLink, setHabitLink] = useState('');
 
   useEffect(() => { loadData(); }, []);
 
@@ -38,6 +39,7 @@ export default function BuilderPage() {
     setHabitIcon('dumbbell');
     setHabitPriority('mandatory');
     setHabitDuration(15);
+    setHabitLink('');
     setEditTask(null);
     setShowSheet(true);
   };
@@ -52,6 +54,7 @@ export default function BuilderPage() {
         icon: habitIcon,
         isMandatory: habitPriority === 'mandatory',
         durationMinutes: habitDuration,
+        link: habitLink,
       });
     } else {
       await db.tasks.add({
@@ -60,6 +63,7 @@ export default function BuilderPage() {
         icon: habitIcon,
         isMandatory: habitPriority === 'mandatory',
         durationMinutes: habitDuration,
+        link: habitLink,
         order: tasksInSection.length,
       });
     }
@@ -183,6 +187,7 @@ export default function BuilderPage() {
                                   setHabitIcon(task.icon);
                                   setHabitPriority(task.isMandatory ? 'mandatory' : 'optional');
                                   setHabitDuration(task.durationMinutes);
+                                  setHabitLink(task.link || '');
                                   setShowSheet(true);
                                 }}
                               >
@@ -291,6 +296,23 @@ export default function BuilderPage() {
                   font: 'var(--text-body-md)', marginBottom: 20,
                 }}
                 id="input-habit-name"
+              />
+
+              {/* Link */}
+              <label style={{ font: 'var(--text-label-xs)', letterSpacing: '0.1em', color: 'var(--color-text-muted)', display: 'block', marginBottom: 8 }}>
+                LINK (OPTIONAL)
+              </label>
+              <input
+                type="url"
+                value={habitLink}
+                onChange={(e) => setHabitLink(e.target.value)}
+                placeholder="https://..."
+                style={{
+                  width: '100%', padding: '14px 16px',
+                  border: '2px solid var(--color-border)', borderRadius: 12,
+                  font: 'var(--text-body-md)', marginBottom: 20,
+                }}
+                id="input-habit-link"
               />
 
               {/* Icon Picker */}

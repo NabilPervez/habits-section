@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, MoreVertical, CheckCircle2, ChevronRight } from 'lucide-react';
+import { X, MoreVertical, CheckCircle2, ChevronRight, ExternalLink } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { getTasksForSection, getSections, completeTask, getTodayHistory, getSetting } from '../db';
 import Icon from '../components/Icon';
@@ -155,6 +155,22 @@ export default function FocusMode({ sectionId, onComplete, onClose }) {
               <h2 style={{ font: 'var(--text-display)', marginBottom: 12 }}>{task?.title}</h2>
               {task?.durationMinutes > 0 && (
                 <span className="chip" style={{ marginBottom: 12 }}>{task.durationMinutes}m</span>
+              )}
+              {task?.link && (
+                <a
+                  href={task.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: 6,
+                    padding: '8px 16px', borderRadius: 20,
+                    background: 'var(--color-surface)', border: '1px solid var(--color-border)',
+                    color: 'var(--color-primary)', font: 'var(--text-label-bold)', fontSize: 14,
+                    textDecoration: 'none', marginBottom: 12
+                  }}
+                >
+                  Open Link <ExternalLink size={16} />
+                </a>
               )}
               <p style={{ font: 'var(--text-label-xs)', color: 'var(--color-text-muted)', letterSpacing: '0.15em', marginTop: 24 }}>
                 ‹ SWIPE TO COMPLETE ›
